@@ -3,7 +3,6 @@
 @section('content')
 
 
-<!-- 
 <div class="container" style="direction: ltr">
     
     <div class="row">
@@ -11,7 +10,7 @@
         <h4>ملاحظة</h4>
         <ul>
           <li id="note">سوف تستقبل الكود فالإيميل بعد التسجيل ضع الكود في الأسفل</li>
-        <li id="note">إذا لم تستقبل الكود في الإيميل يمكنك <a href="{{route('resendcodeEmail')}}">إعادة إرسال الكود</a></li>
+        <li id="note">إذا لم تستقبل الكود في الإيميل يمكنك <a href="#">إعادة إرسال الكود</a></li>
         </ul>
       </div>
     </div>
@@ -35,5 +34,4 @@
       </div>
     </div>
   </div>
--->
 @endsection
