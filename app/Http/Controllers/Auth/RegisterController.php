@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use \App\Mail\SendMail;
+use App\Notification;
 
 
 
@@ -34,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::VERIFY;
 
     /**
      * Create a new controller instance.
@@ -87,7 +88,12 @@ class RegisterController extends Controller
         ];
         \Mail::to($email)->send(new SendMail($detailsforCustomer));
         \Mail::to('aandf.forwork@gmail.com')->send(new SendMail($detailsforAdmin));
-
+        
+        Notification::create([
+            'title'=>'فعل حسابك',
+            'user_id'=>auth()->user()->id,
+            'seen'=>0,
+        ]);
         return User::create([
             'email' => $data['email'],
             'check_email' => 0,
@@ -98,5 +104,7 @@ class RegisterController extends Controller
             'user_name' => $data['name'],
 
         ]);
+      
+
     }
 }

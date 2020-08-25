@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use \App\Mail\SendMail;
+use App\Notification;
 class HomeController extends Controller
 {
     /**
@@ -28,8 +29,9 @@ class HomeController extends Controller
     public function index()
     {
         Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
+        $user_notification = Notification::where(['user_id'=>auth()->user()->id , 'seen'=>0])->get();
 
-        return view('home');
+        return view('home')->with('user',$user_notification);
     }
     protected function verify()
     {

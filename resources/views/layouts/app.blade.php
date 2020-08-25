@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -78,11 +79,26 @@
     min-height: 100%;
 }
 #imgna{
-    width: 10%;
+    width: 12%;
 }
 #nav{
-    background-color: #636b6f70;
+    background-color: #636b6fb0;
 }
+.dot {
+  height: 12px;
+  width: 15px;
+  background-color: rgb(211, 4, 4);
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot2{
+    height: 12px;
+  width: 15px;
+  background-color: rgb(211, 4, 4);
+  border-radius: 50%;
+  display: inline-block;
+}
+
     </style>
 </head>
 <body>
@@ -94,14 +110,17 @@
             <source src="/ksa_Trim.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
-                    
-        <nav id="nav" class="navbar navbar-expand-md">
-
-            <div class="container">
+          <nav id="nav" class="navbar navbar-expand-md">
    
-                <a class="navbar"  href="{{ url('/') }}">
-                  <img src="/ksaa.jpg" id="imgna">
-                </a>
+        
+              <img src="/ksa.png"  id="imgna" >
+
+            
+
+            
+     
+            <div class="container">
+                   
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -125,23 +144,58 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <div class="form-inline">
+                            <li class="nav-item dropdown" >                           
+                             
+                                    <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        @if ($user->count() != null)
+
+                                        <span class="dot2"><i class="far fa-bell"  id="bell"> </span></i>    التحديات
+                                        @else 
+                                       <i class="far fa-bell"  id="bell">التحديات  </i>
+
+                                        @endif
                                 </a>
 
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                   التحدي الأول
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
+                            @if (Auth::user()->check_email == 0)
+                            <span class="dot"></span>
+                            @endif
+
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                   {{ Auth::user()->user_name }} <span class="caret"></span> 
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->check_email == 0)
+
+                                    <a class="dropdown-item" href="/verify"
+                                      >
+                                       تفعيل الحساب <span class="dot"></span>  </a>
+
+                                    @endif
+
+                                      <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
+                                     {{ __('Logout') }}
+                                 </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        </div>
                         @endguest
                     </ul>
                 </div>
