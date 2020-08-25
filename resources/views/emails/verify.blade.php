@@ -3,14 +3,18 @@
 @section('content')
 
 
-<div class="container" style="direction: ltr">
+<div class="container" id="verify">
     
     <div class="row">
       <div class="alert alert-success col-md-6" role="alert" id="notes">
         <h4>ملاحظة</h4>
         <ul>
           <li id="note">سوف تستقبل الكود فالإيميل بعد التسجيل ضع الكود في الأسفل</li>
-        <li id="note">إذا لم تستقبل الكود في الإيميل يمكنك <a href="#">إعادة إرسال الكود</a></li>
+          <form method="POST" action="{{ route('ResendCode') }}">
+            @csrf
+        <li id="note"><button type="submit" id="resend"class="btn">إعادة إرسال الكود</button>إذا لم تستقبل الكود في الإيميل يمكنك </li>
+
+          </form>
         </ul>
       </div>
     </div>

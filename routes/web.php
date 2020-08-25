@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/verify', 'HomeController@verify');
 Route::post('/verify', 'HomeController@checkverify')->name('verify');
+Route::post('/ResendCode', 'HomeController@ResendCode')->name('ResendCode');

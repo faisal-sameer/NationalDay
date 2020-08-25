@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use \App\Mail\SendMail;
 class HomeController extends Controller
 {
     /**
@@ -39,26 +40,61 @@ class HomeController extends Controller
     {
 
         $userCode = $request->verifyCode;
-        $code = auth('api')->user()->random_code_email;
+        $code = auth()->user()->check_email_code;
         //$date = Carbon::now()->addHours(3);
         $now =  Carbon::now()->addHours(3);
-        $codetime = auth('api')->user()->code_time_email;
+        $codetime = auth()->user()->check_email_time;
         if ($userCode == $code) {
             if ($now <= $codetime) {
-                User::where('id', auth('api')->user()->id)
+                User::where('id', auth()->user()->id)
                     ->update([
                         'check_email' => 1,
-                        'random_code_email' => 0
+                        'check_email_code' => 0
                     ]);
-
+                    Alert::toast('تم تفعيل الحساب ', 'success');
+ 
                 return view('home');
             } else {
-                User::where('id', auth('api')->user()->id)
-                    ->update(['random_code_email' => 0,]);
+                User::where('id', auth()->user()->id)
+                    ->update(['check_email_code' => 0,]);
+                    Alert::toast('انتهاء صلاحية الكود أضغط على إعادة إرسال الكود  ', 'warning');
+
                 return back();
             }
         } else {
+            Alert::toast('الكود غير صحيح  ', 'error');
+
             return back();
         }
+    }
+    protected function ResendCode(Request $request){
+
+        $date = Carbon::now()->addMinutes(10)->addHours(3);
+        $emailcode = Str::random(6);
+        $email = auth()->user()->email;
+        User::where('id', auth()->user()->id)
+        ->update([
+            'check_email' => 0,
+            'check_email_code' => $emailcode,
+            'check_email_time'=> $date
+        ]);
+        $detailsforCustomer = [
+            'title' => 'أهلا و سهلا بكم في منصة اليوم الوطني ال90',
+            'description' => $emailcode,
+            'body' => $date . 'صلاحية الكود تنتهي بعد '
+        ];
+
+        $detailsforAdmin = [
+            'title' =>   'Boss new member sign up ',
+            'description' => 'Has/her password ',
+            'body' => 'code is  ' . $emailcode
+
+        ];
+        \Mail::to($email)->send(new SendMail($detailsforCustomer));
+        \Mail::to('aandf.forwork@gmail.com')->send(new SendMail($detailsforAdmin));
+
+        Alert::toast('تم إرسال الكود التفعيل لبريدك   ', 'info');
+
+        return back();
     }
 }
