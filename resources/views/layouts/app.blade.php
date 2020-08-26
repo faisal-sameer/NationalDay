@@ -100,6 +100,7 @@
 }
 
     </style>
+
 </head>
 <body>
     @include('sweetalert::alert')
@@ -148,7 +149,7 @@
                             <li class="nav-item dropdown" >                           
                              
                                     <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        @if ($user->count() != null)
+                                        @if ($user->count() == null)
 
                                         <span class="dot2"><i class="far fa-bell"  id="bell"> </span></i>    التحديات
                                         @else 

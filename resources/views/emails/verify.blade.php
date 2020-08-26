@@ -18,8 +18,8 @@
         </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-10" id="code">
+    <div class="row-cols-sm-3 ">
+      <div class="col-sm-8 " id="code" >
         <div class="jumbotron text-center">
           <h2>إكتب الكود</h2>
           <br>
@@ -30,7 +30,7 @@
                 <input type="text" class="form-control col-md-6 col-sm-6 col-sm-offset-2" id="ver" name="verifyCode" required>
                 <br>
                 <br>
-                <input class="btn btn-primary btn-lg col-md-2 col-sm-2" id="vere" type="submit" value="تحقق">
+                <input class="btn btn-primary btn-lg " id="vere" type="submit" value="تحقق">
               </div>
             </div>
           </form>

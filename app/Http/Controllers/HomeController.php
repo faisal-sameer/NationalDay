@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use \App\Mail\SendMail;
 use App\Notification;
+
 class HomeController extends Controller
 {
     /**
@@ -29,13 +30,16 @@ class HomeController extends Controller
     public function index()
     {
         Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
-        $user_notification = Notification::where(['user_id'=>auth()->user()->id , 'seen'=>0])->get();
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
 
-        return view('home')->with('user',$user_notification);
+        return view('home')->with('user', $user_notification);
     }
+
     protected function verify()
     {
-        return view('emails.verify');
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        return view('emails.verify')->with('user', $user_notification);
     }
 
     protected function checkverify(Request $request)
@@ -53,13 +57,14 @@ class HomeController extends Controller
                         'check_email' => 1,
                         'check_email_code' => 0
                     ]);
-                    Alert::toast('تم تفعيل الحساب ', 'success');
- 
-                return view('home');
+                Alert::toast('تم تفعيل الحساب ', 'success');
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+                return view('home')->with('user', $user_notification);
             } else {
                 User::where('id', auth()->user()->id)
                     ->update(['check_email_code' => 0,]);
-                    Alert::toast('انتهاء صلاحية الكود أضغط على إعادة إرسال الكود  ', 'warning');
+                Alert::toast('انتهاء صلاحية الكود أضغط على إعادة إرسال الكود  ', 'warning');
 
                 return back();
             }
@@ -69,17 +74,18 @@ class HomeController extends Controller
             return back();
         }
     }
-    protected function ResendCode(Request $request){
+    protected function ResendCode(Request $request)
+    {
 
         $date = Carbon::now()->addMinutes(10)->addHours(3);
         $emailcode = Str::random(6);
         $email = auth()->user()->email;
         User::where('id', auth()->user()->id)
-        ->update([
-            'check_email' => 0,
-            'check_email_code' => $emailcode,
-            'check_email_time'=> $date
-        ]);
+            ->update([
+                'check_email' => 0,
+                'check_email_code' => $emailcode,
+                'check_email_time' => $date
+            ]);
         $detailsforCustomer = [
             'title' => 'أهلا و سهلا بكم في منصة اليوم الوطني ال90',
             'description' => $emailcode,

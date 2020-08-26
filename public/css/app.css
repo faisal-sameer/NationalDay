@@ -3407,7 +3407,7 @@ input[type="button"].btn-block {
 
 .dropdown-toggle {
     white-space: nowrap;
-    color:black;
+    color: black;
     width: 1%;
 }
 
@@ -4561,7 +4561,7 @@ input[type="button"].btn-block {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding-left:2%;
+    padding-left: 2%;
 }
 
 .navbar .container,
@@ -10974,17 +10974,47 @@ a.text-dark:focus {
     }
 }
 
-#resend{
-    color : blue;
+#resend {
+    color: blue;
 }
-#verify{
+#verify {
     text-align: center;
     direction: rtl;
-    
 }
-#bell{
+#bell {
     font-size: 200%;
     margin-right: 100%;
-    color : black;
+    color: black;
+}
+#notes {
+    margin-right: 30%;
+}
+#code {
+    margin-right: 20%;
+}
+#ver {
+    margin-right: 40%;
+}
+#vere {
+    width: 100%;
+    margin-right: 15%;
 }
 
+@media only screen and (max-width: 768px) {
+    #notes {
+        margin-right: 10%;
+        width: 80%;
+    }
+    #code {
+        width: 80%;
+        margin-right: 10%;
+    }
+    #ver {
+        margin-right: 0%;
+    }
+
+    #vere {
+        width: 100%;
+        margin-right: 0%;
+    }
+}
