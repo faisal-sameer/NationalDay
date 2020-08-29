@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/verify', 'HomeController@verify');
 Route::post('/verify', 'HomeController@checkverify')->name('verify');
 Route::post('/ResendCode', 'HomeController@ResendCode')->name('ResendCode');
+Route::post('/test', 'welcomeController@test')->name('test');

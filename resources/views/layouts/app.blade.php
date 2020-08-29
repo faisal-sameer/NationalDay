@@ -82,7 +82,7 @@
     width: 12%;
 }
 #nav{
-    background-color: #636b6fb0;
+    background-color:  #010b13 ;
 }
 .dot {
   height: 12px;
@@ -111,15 +111,10 @@
             <source src="/ksa_Trim.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
-          <nav id="nav" class="navbar navbar-expand-md">
+          <nav id="nav" class="navbar navbar-expand-md navbar-light bg-light">
    
         
               <img src="/ksa.png"  id="imgna" >
-
-            
-
-            
-     
             <div class="container">
                    
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
