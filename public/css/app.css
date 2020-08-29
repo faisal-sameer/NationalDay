@@ -4473,6 +4473,7 @@ input[type="button"].btn-block {
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
+    text-align: right;
 }
 
 .nav-link:hover,
@@ -4953,6 +4954,8 @@ input[type="button"].btn-block {
 
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.5);
+    font-size: large;
+    font-weight: bold;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -4974,6 +4977,8 @@ input[type="button"].btn-block {
 .navbar-dark .navbar-toggler {
     color: rgba(255, 255, 255, 0.5);
     border-color: rgba(255, 255, 255, 0.1);
+    margin-left: 40%;
+    margin-top: 5%;
 }
 
 .navbar-dark .navbar-toggler-icon {
@@ -10982,9 +10987,8 @@ a.text-dark:focus {
     direction: rtl;
 }
 #bell {
-    font-size: 200%;
     margin-right: 100%;
-    color: black;
+    color: white;
 }
 #notes {
     margin-right: 30%;
@@ -10998,6 +11002,23 @@ a.text-dark:focus {
 #vere {
     width: 100%;
     margin-right: 15%;
+}
+#cc {
+    direction: rtl;
+    margin-right: 10%;
+}
+
+.card-header {
+    text-align: center;
+    font-weight: bold;
+}
+#btnlog {
+    margin-top: 5%;
+    margin-right: 3%;
+    width: 40%;
+}
+#forg {
+    margin-top: 3%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -11016,5 +11037,21 @@ a.text-dark:focus {
     #vere {
         width: 100%;
         margin-right: 0%;
+    }
+    #btnlog {
+        margin-top: 5%;
+        margin-right: 3%;
+        width: 40%;
+    }
+    #forg {
+        margin-top: 3%;
+    }
+    #cc {
+        direction: rtl;
+        text-align: right;
+    }
+    #dr {
+        margin-left: 35%;
+        margin-top: 5%;
     }
 }

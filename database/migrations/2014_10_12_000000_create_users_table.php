@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('check_email_time');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone');
             $table->integer('user_permations')->unsigned()->index();
             $table->foreign('user_permations')->references('id')->on('permations')->onDelete('cascade');
             $table->rememberToken();

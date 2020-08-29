@@ -8,16 +8,12 @@ use Illuminate\Http\Request;
 
 class welcomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
     protected function welcome()
     {
         Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
 
-        $user_notification = null;
+        $user_notification = 10;
 
-        return view('welcome');
+        return view('welcome')->with('user', $user_notification);
     }
 }
