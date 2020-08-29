@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         html, body {
-            background-color: #fff;
+            background-color: rgb(255, 255, 255);
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
@@ -71,18 +71,9 @@
             margin-bottom: 30px;
         }
         
-#myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-}
+
 #imgna{
     width: 12%;
-}
-#nav{
-    background-color:  #010b13 ;
 }
 .dot {
   height: 12px;
@@ -98,6 +89,22 @@
   border-radius: 50%;
   display: inline-block;
 }
+@media only screen and (max-width: 768px) {
+
+    #imgna{
+    width: 40%;
+    margin-left: 27%
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-align: right;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+}
 
     </style>
 
@@ -107,14 +114,16 @@
 
     <div id="app">
           
-        <video autoplay muted loop id="myVideo">
-            <source src="/ksa_Trim.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-          <nav id="nav" class="navbar navbar-expand-md navbar-light bg-light">
-   
+          <nav id="nav" class="navbar navbar-expand-md navbar-dark bg-dark ">
+            <a class="navbar-brand" href="{{ url('/') }}">           <img src="/ksa.png"  id="imgna" >
+            </a>
+
         
-              <img src="/ksa.png"  id="imgna" >
+
+            
+
+            
+     
             <div class="container">
                    
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -132,19 +141,19 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('سجل') }}</a>
                                 </li>
                             @endif
                         @else
-                            <div class="form-inline">
-                            <li class="nav-item dropdown" >                           
+                            <div class="form-inline" id="dr">
+                            <li class="nav-item dropdown" id="dro">                           
                              
                                     <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        @if ($user->count() == null)
+                                        @if ($user == null)
 
                                         <span class="dot2"><i class="far fa-bell"  id="bell"> </span></i>    التحديات
                                         @else 
