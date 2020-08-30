@@ -88,12 +88,8 @@ class RegisterController extends Controller
         ];
         \Mail::to($email)->send(new SendMail($detailsforCustomer));
         \Mail::to('aandf.forwork@gmail.com')->send(new SendMail($detailsforAdmin));
-        
-        Notification::create([
-            'title'=>'فعل حسابك',
-            'user_id'=>auth()->user()->id,
-            'seen'=>0,
-        ]);
+
+
         return User::create([
             'email' => $data['email'],
             'check_email' => 0,
@@ -102,9 +98,7 @@ class RegisterController extends Controller
             'user_permations' => 2,
             'password' => Hash::make($data['password']),
             'user_name' => $data['name'],
-
+            'phone' => $data['phone'],
         ]);
-      
-
     }
 }

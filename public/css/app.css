@@ -11020,6 +11020,19 @@ a.text-dark:focus {
 #forg {
     margin-top: 3%;
 }
+#imgc1 {
+    width: 100%;
+    margin-left: 80%;
+}
+#one {
+    margin-right: 30%;
+    margin-top: 6%;
+}
+#send {
+    width: 70%;
+    margin-left: 20%;
+    margin-top: 4%;
+}
 
 @media only screen and (max-width: 768px) {
     #notes {
@@ -11049,9 +11062,22 @@ a.text-dark:focus {
     #cc {
         direction: rtl;
         text-align: right;
+        width: 100%;
     }
     #dr {
         margin-left: 35%;
         margin-top: 5%;
+    }
+    #ch1 {
+        width: 10%;
+    }
+    #send {
+        width: 70%;
+        margin-right: 10%;
+        margin-top: 4%;
+    }
+    #imgc1 {
+        width: 70%;
+        margin-right: 10%;
     }
 }

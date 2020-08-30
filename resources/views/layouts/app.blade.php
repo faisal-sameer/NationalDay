@@ -94,7 +94,7 @@
 
     #imgna{
     width: 40%;
-    margin-left: 27%
+    margin-left: 30%
 }
 
 .nav-link {

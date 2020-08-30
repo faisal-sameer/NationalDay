@@ -105,4 +105,12 @@ class HomeController extends Controller
 
         return back();
     }
+    protected function challenge1()
+    {
+        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
+
+        $user_notification = 10;
+
+        return view('user.challenge1')->with('user', $user_notification);
+    }
 }
