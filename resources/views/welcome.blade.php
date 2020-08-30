@@ -97,11 +97,26 @@
 </style>
 </head>
 <body>
+  @include('sweetalert::alert')
+
   <div id="cf">
     <div id="test" class="button"><p>   <img class="bottom" src="/king-ad.jpg" style="width: 50%" /> </p> </div>
     <div id="test" class="button"><p>   <img class="bottom" src="/king-fh.jpg" style="width: 50%" /> </p> </div>
     <div id="test" class="button"><p>   <img class="bottom" src="/king-kh.jpg" style="width: 50%" /> </p> </div>
 
   </div>
+  <button type="button" onclick="opentheSwal();">OK</button>
+  <script>
+    function opentheSwal() {
+        swal(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        );
+        $(".swal2-modal").css('background-color', '#000');//Optional changes the color of the sweetalert 
+        $(".swal2-container.in").css('background-color', 'rgba(43, 165, 137, 0.45)');//changes the color of the overlay
+    }
+  </script>
 </body>
+
 </html>
