@@ -75,7 +75,6 @@
 #imgna{
     width: 12%;
 }
-
 .dot {
   height: 12px;
   width: 15px;

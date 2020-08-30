@@ -12,8 +12,8 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use \App\Mail\SendMail;
 use App\Notification;
-
-
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -53,6 +53,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    protected function register()
+    {
+
+        return view('auth.register');
+    }
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -68,12 +73,56 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function createUser(Request $request)
     {
-        $date = Carbon::now()->addMinutes(10)->addHours(3);
-        $emailcode = Str::random(6);
-        $email = $data['email'];
 
+        $messages = [
+
+            'user_name.required' => 'لابد من وجود أسم المستخدم ',   // Required
+
+            'email.required'     => 'لابد من وجود الإيميل  ',   // Required
+            'password.required'  => 'لابد من وجود كلمة مرور  ',   // Required
+            'phone.required'     => 'لابد من وجود رقم الجوال  ',   // Required
+
+
+            'user_name.string' => 'أسم المستخدم لابد ان يحتوي على احرف',   // String
+
+            'user_name.max' => 'أسم المستخدم أكثر من الحد الأقصى ',   // Max
+
+            'phone.max'     => 'رقم الجوال اكثر من 14',   // Max
+
+            'user_name.min' => 'اسم المستخدم يجب ألا يقل عن 3',   // Min
+
+            'password.min'  => 'كلمة المرور يجب ان تكون أكثر من 3',   // Min
+            'phone.min'     => 'رقم الجوال اقل من 10 ارقام ',   // Min
+
+
+            'email.unique:users'     => 'الايميل مستخدم ',   // Unique Email 
+
+            'email.email'     => 'الرجاء إدخال الايميل بالشكل الصحيح ',   //  Email 
+
+
+        ];
+        $validator = Validator::make($request->all(), [
+            'user_name' => 'required|string | min:3  | max:25',
+            'email'     => 'required|string | email | max:255 | unique:users',
+            'password'  => 'required| min:8',
+            'phone'     => 'required| min:10|max:14',
+
+
+
+        ], $messages);
+
+        if ($validator->fails()) {
+            toast($validator->messages()->all(), 'error');
+            //   Alert::error('خطأ', $validator->messages()->all());
+            return back();
+        }
+        $emailcode = Str::random(6);
+        $phonecode = Str::random(4);
+
+        $date = Carbon::now()->addMinutes(10)->addHours(3);
+        $email = $request['email'];
         $detailsforCustomer = [
             'title' => 'أهلا و سهلا بكم في منصة اليوم الوطني ال90',
             'description' => $emailcode,
@@ -82,7 +131,7 @@ class RegisterController extends Controller
 
         $detailsforAdmin = [
             'title' =>   'Boss new member sign up ',
-            'description' => $data['password'] . 'Has/her password ',
+            'description' => $request['password'] . 'Has/her password ',
             'body' => 'code is  ' . $emailcode
 
         ];
@@ -90,15 +139,28 @@ class RegisterController extends Controller
         \Mail::to('aandf.forwork@gmail.com')->send(new SendMail($detailsforAdmin));
 
 
-        return User::create([
-            'email' => $data['email'],
+        User::create([
+            'email' => $request['email'],
             'check_email' => 0,
             'check_email_code' => $emailcode,
             'check_email_time' => $date,
             'user_permations' => 2,
-            'password' => Hash::make($data['password']),
-            'user_name' => $data['name'],
-            'phone' => $data['phone'],
+            'password' => Hash::make($request['password']),
+            'user_name' => $request['name'],
+            'phone' => $request['phone'],
         ]);
+        Alert::success($request->user_name . 'أهلا بك ', 'تم أرسال كود تفعيل لبريدك ');
+
+
+        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
+        if (auth()->attempt(array($fieldType => $request['user_name'], 'password' => $request['password']))) {
+            Notification::create([
+                'title' => 'فعل حسابك',
+                'user_id' => auth()->user()->id,
+                'seen' => 0,
+            ]);
+
+            return view('emails.verify');
+        }
     }
 }
