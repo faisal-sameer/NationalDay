@@ -160,11 +160,8 @@
                             </li>
                         @else
                             <div class="form-inline" id="dr">
-                                <li class="nav-item">
-
-                                    <a class="nav-link" href="{{ url('/') }}">عن المسابقة</a>  
-                                </li>
-                            <li class="nav-item dropdown" id="dro">                           
+                              
+                            <li class="nav-item dropdown" >                           
                              
                                     <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         @if ($user == null)
@@ -209,6 +206,7 @@
                                        تفعيل الحساب <span class="dot"></span>  </a>
 
                                     @endif
+                                    <a class="dropdown-item" href="{{ url('/') }}">عن المسابقة</a>  
 
                                       <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
