@@ -178,10 +178,6 @@
 
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-<<<<<<< HEAD
-                                   
-                                    <a href="/challenge1">التحدي الأول</a>
-=======
                                  <a  class="nav-link" href="{{ url('challenge1') }}">التحدي الأول</a>  
                                  <br>
                                  <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a>  
@@ -189,7 +185,6 @@
                                  <a  class="nav-link" href="{{ url('challenge3') }}">التحدي الثالث</a>  
 
 
->>>>>>> 9dfea5b4b8c5dea8343c58044ae3e8b94a36a772
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
