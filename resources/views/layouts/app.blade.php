@@ -17,63 +17,30 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <!-- Styles -->
+    <!-- Styles 
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  --> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+  
+    
     <style>
-        html, body {
-            background-color: rgb(255, 255, 255);
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
+     
 
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-        
 
 #imgna{
-    width: 12%;
+    width:100%;
+    margin-top: 15%;
+}
+
+#stu{
+    width:70%;
+}
+
+#uqu{
+    width:80%;
 }
 .dot {
   height: 12px;
@@ -89,11 +56,25 @@
   border-radius: 50%;
   display: inline-block;
 }
+#nav{
+    color: #ebf0f1;
+}
+
 @media only screen and (max-width: 768px) {
 
     #imgna{
-    width: 40%;
-    margin-left: 30%
+    width: 100%;
+
+}
+
+#stu{
+    width: 70%;
+    margin-left: 50%
+
+}
+#uqu{
+    width: 100%;
+    margin-left: 18%;
 }
 
 .nav-link {
@@ -103,20 +84,43 @@
     margin-right: 10%;
     margin-top: 5%;
 }
+.navbar-brand {
+    display: inline-block;
+    padding-top: 0.32rem;
+    padding-bottom: 0.32rem;
+    font-size: 1.125rem;
+    line-height: inherit;
+    white-space: nowrap;
+    width: 27%;
+    margin-left: 1%;
+}
+
+
 
 }
 
     </style>
 
 </head>
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" >
     @include('sweetalert::alert')
 
     <div id="app">
+     
           
-          <nav id="nav" class="navbar navbar-expand-md navbar-dark bg-dark ">
-            <a class="navbar-brand" href="{{ url('/') }}">           <img src="/ksa.png"  id="imgna" >
+          <nav id="nav" class="navbar navbar-expand-md navbar-light   ">
+              <div class="navbar-brand"  >
+            <a href="{{ url('/king') }}">           <img src="/ksa.png"  id="imgna" >
             </a>
+            <a  href="https://twitter.com/uqu_edu">       
+                <img src="/uqu.png"  id="uqu" >
+          </a>
+            <a  href="https://twitter.com/dsauqu?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">       
+                  <img src="/01.png"  id="stu" >
+            </a>
+           
+        </div>
+
 
         
 
@@ -139,6 +143,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                      
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
@@ -148,8 +154,16 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('سجل') }}</a>
                                 </li>
                             @endif
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="{{ url('/') }}">عن المسابقة </a>  
+                            </li>
                         @else
                             <div class="form-inline" id="dr">
+                                <li class="nav-item">
+
+                                    <a class="nav-link" href="{{ url('/') }}">عن المسابقة</a>  
+                                </li>
                             <li class="nav-item dropdown" id="dro">                           
                              
                                     <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -164,8 +178,18 @@
 
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+<<<<<<< HEAD
                                    
                                     <a href="/challenge1">التحدي الأول</a>
+=======
+                                 <a  class="nav-link" href="{{ url('challenge1') }}">التحدي الأول</a>  
+                                 <br>
+                                 <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a>  
+                                 <br>
+                                 <a  class="nav-link" href="{{ url('challenge3') }}">التحدي الثالث</a>  
+
+
+>>>>>>> 9dfea5b4b8c5dea8343c58044ae3e8b94a36a772
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -176,14 +200,14 @@
                             @endif
 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a   id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                    {{ Auth::user()->user_name }} <span class="caret"></span> 
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->check_email == 0)
 
-                                    <a class="dropdown-item" href="/verify"
+                                    <a  class="dropdown-item" href="/verify"
                                       >
                                        تفعيل الحساب <span class="dot"></span>  </a>
 
@@ -208,9 +232,50 @@
 
         </nav>
    <main class="py-4">
-    
+
             @yield('content')
+            
         </main>  
     </div>
+   
+  
+    <script >
+        $(document).ready(function(){
+          // Add smooth scrolling to all links in navbar + footer link
+          $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+        
+              // Store hash
+              var hash = this.hash;
+        
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 1200, function(){
+           
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+          
+          $(window).scroll(function() {
+            $(".slideanim").each(function(){
+              var pos = $(this).offset().top;
+        
+              var winTop = $(window).scrollTop();
+                if (pos < winTop + 600) {
+                  $(this).addClass("slide");
+                }
+            });
+          });
+        })
+        </script>
 </body>
+
 </html>
+

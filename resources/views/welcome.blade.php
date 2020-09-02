@@ -1,21 +1,45 @@
-
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('تحديات اليوم الوطني') }}</div>
 
-  @include('sweetalert::alert')
-  <div style="margin:3em;">
-    <button type="button" class="btn btn-primary btn-lg " id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Submit Order</button>
-    <br>
-      <br>
-    <button type="button" class="btn btn-primary btn-lg" id="load2" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">Submit Order</button>
+                <div class="card-body" id="cc">
+
+                    <h4>لأننا نعود بحذر سيتم تنفيذ التحدي ومشاركة المتسابقين في حل الألغاز عن بعد من خلال وسائل التواصل الاجتماعي.</h4>
+                    <br>
+                        <img src="/clock.png" id="clk">
+                        <br>
+                        <ul>
+                            <li><h4>	يبدأ التحدي بمشيئة الله بتاريخ 28/1/1442 هـ، وينتهي في يوم 6/2/1442 هـ.</h4></li>
+                            <li><h4>	سيتم السحب يومياً على اسم فائز بالإضافة إلى الإعلان عن الفائزين بـ 6 جوائز كبرى أتموا جميع الحلول المطروحة في التحدي وذلك في احتفالية ذكرى اليوم الوطني الـ 90 المقدمة من جامعة أم القرى، يوم الخميس الموافق 7/2/1442 هـ.</h4></li>
+                        </ul>
+                        <br>
+                        <img src="/problem.png" id="clk">
+                        <br>
+                        <ul>
+                            <li><h4>	يحتوي التحدي على 9 ألغاز مقسمة على 9 أيام.</h4></li>
+                            <li><h4>	يلزم تسجيل الدخول لمنسوبي ومنسوبات وطلاب وطالبات جامعة أم القرى بالبريد الرسمي.</h4></li>
+                            <li><h4>	لكل متسابق 3 محاولات ثم الانتظار لمدة 90 ثانية ثم استئناف المحاولات لمرتين متتاليتين بنفس الطريقة.</h4></li>
+                            <li><h4>	للمتسابق / المتسابقة الحق في تغيير السؤال لمرة واحدة خلال فترة المسابقة.</h4></li>
+                            <br>
+                            <img src="/help.png" id="clk">
+                            <br><br>
+                            <h4>	التحدي يشمل المواطنين والمقيمين في هذا البلد العظيم احتفاءً بيوم توحيد مملكتنا الغالية.</h4>
+
+
+                        </ul>
+
+
+
+
+                </div>
+            </div>
+        </div>
     </div>
-  <div id="cf">
-    <div id="test" class="button"><p>   <img class="bottom" src="/king-ad.jpg" style="width: 50%" /> </p> </div>
-    <div id="test" class="button"><p>   <img class="bottom" src="/king-fh.jpg" style="width: 50%" /> </p> </div>
-    <div id="test" class="button"><p>   <img class="bottom" src="/king-kh.jpg" style="width: 50%" /> </p> </div>
-
-  </div>
-  <button type="button" onclick="opentheSwal();">OK</button>
+</div>
 
 @endsection
