@@ -11040,12 +11040,12 @@ a.text-dark:focus {
 }
 #send {
     width: 70%;
-    margin-left: 20%;
+    margin-right: 12%;
     margin-top: 4%;
 }
 #send2 {
     width: 70%;
-    margin-left: 12%;
+    margin-right: 15%;
     margin-top: 4%;
 }
 #hh {
@@ -11055,20 +11055,6 @@ a.text-dark:focus {
 
 /* The actual timeline (the vertical ruler) */
 
-#cf {
-    position: relative;
-    margin-bottom: 20%;
-}
-
-#cf img {
-    position: absolute;
-    left: 0;
-    right: 0;
-}
-
-#cf img.top:hover {
-    opacity: 0;
-}
 #test p {
     margin-top: 25px;
     font-size: 21px;
@@ -11235,8 +11221,8 @@ a.text-dark:focus {
 #king {
     width: 80%;
     border-radius: 40%;
-    -webkit-animation: zoom 20s; /* Chrome, Safari, Opera */
-    animation: zoom 10s;
+    -webkit-animation: zoom 3s; /* Chrome, Safari, Opera */
+    animation: zoom 3s;
 }
 
 @-webkit-keyframes zoom {
@@ -11269,6 +11255,19 @@ a.text-dark:focus {
 }
 #clk {
     width: 20%;
+}
+#stuff {
+    direction: rtl;
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+}
+.con:hover + #stuff {
+    opacity: 1;
 }
 
 @media only screen and (max-width: 768px) {
@@ -11307,14 +11306,14 @@ a.text-dark:focus {
     }
     #ch1 {
         width: 10%;
-        margin-right: 6%;
+        margin-right: 9%;
     }
     #ch2 {
         width: 12%;
     }
     #send {
         width: 70%;
-        margin-right: 15%;
+        margin-right: 14%;
         margin-top: 4%;
     }
     #send2 {
@@ -11373,5 +11372,11 @@ a.text-dark:focus {
         background-size: cover; /* Resize the background image to cover the entire container */
         background-position: center; /* Center the image */
         background-attachment: fixed;
+    }
+    #king {
+        width: 65%;
+        border-radius: 40%;
+        -webkit-animation: zoom 3s; /* Chrome, Safari, Opera */
+        animation: zoom 3s;
     }
 }

@@ -183,6 +183,8 @@
                                  <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a>  
                                  <br>
                                  <a  class="nav-link" href="{{ url('challenge3') }}">التحدي الثالث</a>  
+                                    <br>
+                                    <a  class="nav-link" href="{{ url('challenge4') }}">التحدي الرابع</a>  
 
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
