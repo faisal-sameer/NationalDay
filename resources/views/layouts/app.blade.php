@@ -164,8 +164,8 @@
 
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                   التحدي الأول
-
+                                   
+                                    <a href="/challenge1">التحدي الأول</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

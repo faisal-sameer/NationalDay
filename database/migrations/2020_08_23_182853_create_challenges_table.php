@@ -16,7 +16,7 @@ class CreateChallengesTable extends Migration
         Schema::create('challenges', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->text('challlenge');
+            $table->string('challlenge');
             $table->string('answer');
             $table->integer('status');
             $table->string('path')->nullable();

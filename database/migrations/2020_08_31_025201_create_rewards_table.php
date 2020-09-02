@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecordsTable extends Migration
+class CreateRewardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('records', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
+        Schema::create('rewards', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('challenge_id')->unsigned()->index();
+            $table->integer('challenge_id')->unsigned()->index()->nullable();
             $table->foreign('challenge_id')->references('id')->on('challenges')->onDelete('cascade');
-            $table->boolean('from');
-            $table->integer('status');
-            $table->string('time');
-
+            $table->string('reward_name');
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ class CreateRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('records');
+        Schema::dropIfExists('rewards');
     }
 }

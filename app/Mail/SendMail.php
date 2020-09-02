@@ -30,6 +30,18 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Subject: A&&F eamil auto-replay  ')->view('emails.sendemail');
+        
+$address = 'nd90thuquchallenge@nd90thuquchallenge.com';
+
+$name = 'Saquib Rizwan';
+
+$subject = 'Laravel Email';
+
+return $this->view('emails.sendemail')
+
+->from($address, $name) 
+
+->subject($subject);
+        //return $this->subject('Subject: A&&F eamil auto-replay  ')->view('emails.sendemail');
     }
 }
