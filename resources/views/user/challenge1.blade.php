@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('التحدي الأول') }}</div>
-                <div class="card-body" id="cc">
+            <div >
+                <h2 id="hh"> {{ __('التحدي الأول') }}</h2>
+                <div  id="cc">
 
-                    <img src="/ch1.jpeg"  id="imgc1" >
+                    <img src="/ra_1.png"  id="imgc1" >
                     <div class="form-group row">
                        
 

@@ -1,122 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.app')
 
-<style>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('تحديات اليوم الوطني') }}</div>
+
+                <div class="card-body" id="cc">
+
+                    <h4>لأننا نعود بحذر سيتم تنفيذ التحدي ومشاركة المتسابقين في حل الألغاز عن بعد من خلال وسائل التواصل الاجتماعي.</h4>
+                    <br>
+                        <img src="/clock.png" id="clk">
+                        <br>
+                        <ul>
+                            <li><h4>	يبدأ التحدي بمشيئة الله بتاريخ 28/1/1442 هـ، وينتهي في يوم 6/2/1442 هـ.</h4></li>
+                            <li><h4>	سيتم السحب يومياً على اسم فائز بالإضافة إلى الإعلان عن الفائزين بـ 6 جوائز كبرى أتموا جميع الحلول المطروحة في التحدي وذلك في احتفالية ذكرى اليوم الوطني الـ 90 المقدمة من جامعة أم القرى، يوم الخميس الموافق 7/2/1442 هـ.</h4></li>
+                        </ul>
+                        <br>
+                        <img src="/problem.png" id="clk">
+                        <br>
+                        <ul>
+                            <li><h4>	يحتوي التحدي على 9 ألغاز مقسمة على 9 أيام.</h4></li>
+                            <li><h4>	يلزم تسجيل الدخول لمنسوبي ومنسوبات وطلاب وطالبات جامعة أم القرى بالبريد الرسمي.</h4></li>
+                            <li><h4>	لكل متسابق 3 محاولات ثم الانتظار لمدة 90 ثانية ثم استئناف المحاولات لمرتين متتاليتين بنفس الطريقة.</h4></li>
+                            <li><h4>	للمتسابق / المتسابقة الحق في تغيير السؤال لمرة واحدة خلال فترة المسابقة.</h4></li>
+                            <br>
+                            <img src="/help.png" id="clk">
+                            <br><br>
+                            <h4>	التحدي يشمل المواطنين والمقيمين في هذا البلد العظيم احتفاءً بيوم توحيد مملكتنا الغالية.</h4>
 
 
-/* The actual timeline (the vertical ruler) */
-.button{
-  width: 150px;
-  margin: auto;
-  margin-top: 200px;
-  padding: 10px;
-  border: 1px solid #fff;
-  animation:button 4s ease-out normal ;
+                        </ul>
 
-}
-@keyframes button{
-  0%{
-    transform: scale(0.9);
-  }
-  25%{
-    transform: scale(0.9);
-  }
-  60%{
-    transform: scale(3);
-  }
-  100%{
-    visibility: hidden;
-  opacity: 0;
-  transition: visibility 2s, opacity 2s linear;
-    transform: scale(0.9);
 
-  }
-}
-#cf {
-  position:relative;
-  height:281px;
-  width:450px;
-  margin:0 auto;
-}
 
-#cf img {
-  position:absolute;
-  left:0;
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
-}
 
-#cf img.top:hover {
-  opacity:0;
-}
-#test p {
-    margin-top: 25px;
-    font-size: 21px;
-    text-align: center;
-    animation: fadein 3s;
-    -moz-animation: fadein 5s; /* Firefox */
-    -webkit-animation: fadein 5s; /* Safari and Chrome */
-    -o-animation: fadein 5s; /* Opera */
-}
-@keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-moz-keyframes fadein { /* Firefox */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-o-keyframes fadein { /* Opera */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-</style>
-</head>
-<body>
-  @include('sweetalert::alert')
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <div id="cf">
-    <div id="test" class="button"><p>   <img class="bottom" src="/king-ad.jpg" style="width: 50%" /> </p> </div>
-    <div id="test" class="button"><p>   <img class="bottom" src="/king-fh.jpg" style="width: 50%" /> </p> </div>
-    <div id="test" class="button"><p>   <img class="bottom" src="/king-kh.jpg" style="width: 50%" /> </p> </div>
-
-  </div>
-  <button type="button" onclick="opentheSwal();">OK</button>
-  <script>
-    function opentheSwal() {
-        swal(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-        );
-        $(".swal2-modal").css('background-color', '#000');//Optional changes the color of the sweetalert 
-        $(".swal2-container.in").css('background-color', 'rgba(43, 165, 137, 0.45)');//changes the color of the overlay
-    }
-  </script>
-</body>
-
-</html>
+@endsection

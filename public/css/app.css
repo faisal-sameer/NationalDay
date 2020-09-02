@@ -74,7 +74,11 @@ body {
     line-height: 1.6;
     color: #212529;
     text-align: left;
-    background-color: #f8fafc;
+    background-image: url("/back.png");
+    background-repeat: no-repeat, repeat;
+    background-position: center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-attachment: fixed;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -4563,6 +4567,7 @@ input[type="button"].btn-block {
     align-items: center;
     justify-content: space-between;
     padding-left: 2%;
+    margin: auto;
 }
 
 .navbar .container,
@@ -4585,6 +4590,7 @@ input[type="button"].btn-block {
     font-size: 1.125rem;
     line-height: inherit;
     white-space: nowrap;
+    width: 13%;
 }
 
 .navbar-brand:hover,
@@ -4975,6 +4981,12 @@ input[type="button"].btn-block {
 }
 
 .navbar-dark .navbar-toggler {
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+    margin-left: 40%;
+    margin-top: 5%;
+}
+.navbar-light .navbar-toggler {
     color: rgba(255, 255, 255, 0.5);
     border-color: rgba(255, 255, 255, 0.1);
     margin-left: 40%;
@@ -10932,10 +10944,6 @@ a.text-dark:focus {
         size: a3;
     }
 
-    body {
-        min-width: 992px !important;
-    }
-
     .container {
         min-width: 992px !important;
     }
@@ -10988,7 +10996,7 @@ a.text-dark:focus {
 }
 #bell {
     margin-right: 100%;
-    color: white;
+    color: black;
 }
 #notes {
     margin-right: 30%;
@@ -11005,6 +11013,7 @@ a.text-dark:focus {
 }
 #cc {
     direction: rtl;
+    text-align: right;
     margin-right: 10%;
 }
 
@@ -11022,7 +11031,8 @@ a.text-dark:focus {
 }
 #imgc1 {
     width: 100%;
-    margin-left: 80%;
+    margin-left: 50%;
+    margin-top: 8%;
 }
 #one {
     margin-right: 30%;
@@ -11032,6 +11042,233 @@ a.text-dark:focus {
     width: 70%;
     margin-left: 20%;
     margin-top: 4%;
+}
+#send2 {
+    width: 70%;
+    margin-left: 12%;
+    margin-top: 4%;
+}
+#hh {
+    margin-left: 38%;
+    color: green;
+}
+
+/* The actual timeline (the vertical ruler) */
+
+#cf {
+    position: relative;
+    margin-bottom: 20%;
+}
+
+#cf img {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+#cf img.top:hover {
+    opacity: 0;
+}
+#test p {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-moz-keyframes fadein {
+    /* Firefox */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-o-keyframes fadein {
+    /* Opera */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    background-color: rgba(6, 180, 0, 0.288);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+* {
+    box-sizing: border-box;
+}
+
+/* Container around content */
+.cont {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    margin-top: 8%;
+}
+
+/* The circles on the timeline */
+.cont::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -12px;
+    background-color: white;
+    border: 4px solid #ff9f55;
+    top: 27px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+    left: 0;
+}
+
+/* Place the container to the right */
+.right {
+    left: 50.3%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+    left: -16px;
+}
+
+/* The actual content */
+.con {
+    width: 100%;
+    padding: 20px 30px;
+    position: relative;
+    border-radius: 6px;
+    animation: con 4s ease-out normal;
+    animation: fadein 3s;
+    -moz-animation: fadein 5s; /* Firefox */
+    -webkit-animation: fadein 5s; /* Safari and Chrome */
+    -o-animation: fadein 5s; /* Opera */
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+@keyframes con {
+    0% {
+        transform: scale(0.9);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    60% {
+        transform: scale(3);
+    }
+    100% {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 2s, opacity 2s linear;
+        transform: scale(0.9);
+    }
+}
+#king {
+    width: 80%;
+    border-radius: 40%;
+    -webkit-animation: zoom 20s; /* Chrome, Safari, Opera */
+    animation: zoom 10s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(1, 1);
+    }
+    to {
+        -webkit-transform: scale(1.5, 1.5);
+    }
+}
+
+/* Standard syntax */
+@keyframes zoom {
+    from {
+        transform: scale(1, 1);
+    }
+    to {
+        transform: scale(1.5, 1.5);
+    }
+}
+#navimg {
+    width: 100%;
+}
+#two {
+    margin-right: 1%;
+    margin-top: 6%;
+}
+#ch3 {
+    width: 8%;
+}
+#clk {
+    width: 20%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -11070,14 +11307,71 @@ a.text-dark:focus {
     }
     #ch1 {
         width: 10%;
+        margin-right: 6%;
+    }
+    #ch2 {
+        width: 12%;
     }
     #send {
         width: 70%;
-        margin-right: 10%;
+        margin-right: 15%;
+        margin-top: 4%;
+    }
+    #send2 {
+        width: 70%;
+        margin-right: 15%;
         margin-top: 4%;
     }
     #imgc1 {
         width: 70%;
-        margin-right: 10%;
+        margin-right: 15%;
+    }
+    #hh {
+        margin-left: 30%;
+    }
+    #one {
+        margin-right: 23%;
+        margin-top: 6%;
+    }
+    /* Place the timelime to the left */
+    .timeline::after {
+        left: 31px;
+    }
+
+    /* Full-width containers */
+    .cont {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    /* Make sure that all arrows are pointing leftwards */
+    .cont::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+    }
+
+    /* Make sure all circles are at the same spot */
+    .left::after,
+    .right::after {
+        left: 15px;
+    }
+
+    /* Make all right containers behave like the left ones */
+    .right {
+        left: 0%;
+    }
+    #ch3 {
+        width: 15%;
+        margin-right: 1%;
+    }
+    body {
+        background-image: url("/back1.png");
+        background-repeat: no-repeat;
+        background-size: cover; /* Resize the background image to cover the entire container */
+        background-position: center; /* Center the image */
+        background-attachment: fixed;
     }
 }
