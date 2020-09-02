@@ -160,11 +160,8 @@
                             </li>
                         @else
                             <div class="form-inline" id="dr">
-                                <li class="nav-item">
-
-                                    <a class="nav-link" href="{{ url('/') }}">عن المسابقة</a>  
-                                </li>
-                            <li class="nav-item dropdown" id="dro">                           
+                              
+                            <li class="nav-item dropdown" >                           
                              
                                     <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         @if ($user == null)
@@ -180,9 +177,13 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                  <a  class="nav-link" href="{{ url('challenge1') }}">التحدي الأول</a>  
                                  <br>
-                                 <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a>  
-                                 <br>
-                                 <a  class="nav-link" href="{{ url('challenge7') }}">التحدي السابع</a>  
+                                 <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a> 
+                                 <br>  
+                                 <a class="nav-link" href="{{ url('challenge3') }}">التحدي الثالث</a>  
+                                <br>
+                                <a  class="nav-link" href="{{ url('challenge4') }}">التحدي الرابع</a>  
+                                <br>
+                                <a  class="nav-link" href="{{ url('challenge7') }}">التحدي السابع</a> 
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -206,6 +207,7 @@
                                        تفعيل الحساب <span class="dot"></span>  </a>
 
                                     @endif
+                                    <a class="dropdown-item" href="{{ url('/') }}">عن المسابقة</a>  
 
                                       <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
