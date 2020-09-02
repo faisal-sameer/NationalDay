@@ -25,8 +25,10 @@ Route::get('/home', 'HomeController@index');
 Route::get('/challenge1', 'HomeController@challenge1');
 Route::post('/challenge1', 'HomeController@challenge1answer')->name('answerOne');
 Route::get('/challenge2', 'HomeController@challenge2');
-Route::get('/challenge3', 'HomeController@challenge3');
+Route::post('/challenge2', 'HomeController@challenge2answer')->name('answerTwo');
 
+Route::get('/challenge7', 'HomeController@challenge7');
+Route::post('/challenge7', 'HomeController@challenge7answer')->name('answerSeven');
 Route::get('/verify', 'HomeController@verify');
 Route::post('/verify', 'HomeController@checkverify')->name('verify');
 Route::post('/ResendCode', 'HomeController@ResendCode')->name('ResendCode');
