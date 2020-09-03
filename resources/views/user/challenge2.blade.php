@@ -9,7 +9,7 @@
                 <div  id="cc">
                     <form method="POST" action="{{ route('answerTwo') }}">
                         @csrf
-                    <img src="/ra3_.png"  id="imgc1" >
+                    <img src="/img/ra2_.png"  id="imgc1" >
 
 
                     

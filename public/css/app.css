@@ -74,7 +74,7 @@ body {
     line-height: 1.6;
     color: #212529;
     text-align: left;
-    background-image: url("/back.png");
+    background-image: url("/img/back.png");
     background-repeat: no-repeat, repeat;
     background-position: center; /* Center the image */
     background-size: cover; /* Resize the background image to cover the entire container */
@@ -11038,6 +11038,10 @@ a.text-dark:focus {
     margin-right: 30%;
     margin-top: 6%;
 }
+#seven {
+    margin-right: 22%;
+    margin-top: 6%;
+}
 #send {
     width: 70%;
     margin-right: 12%;
@@ -11311,6 +11315,7 @@ a.text-dark:focus {
     #ch2 {
         width: 12%;
     }
+
     #send {
         width: 70%;
         margin-right: 14%;
@@ -11330,6 +11335,10 @@ a.text-dark:focus {
     }
     #one {
         margin-right: 23%;
+        margin-top: 6%;
+    }
+    #seven {
+        margin-right: 18%;
         margin-top: 6%;
     }
     /* Place the timelime to the left */
@@ -11367,7 +11376,7 @@ a.text-dark:focus {
         margin-right: 1%;
     }
     body {
-        background-image: url("/back1.png");
+        background-image: url("/img/back1.png");
         background-repeat: no-repeat;
         background-size: cover; /* Resize the background image to cover the entire container */
         background-position: center; /* Center the image */

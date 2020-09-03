@@ -11,8 +11,8 @@
                     <form method="POST" action="{{ route('answerOne') }}">
                         @csrf
 
-                    <img src="/ch1.jpeg"  id="imgc1" >
-                    <div class="form-group row">
+                        <img src="/img/ra_1.png"  id="imgc1" >
+                        <div class="form-group row">
                         
 
                         <div class="form-inline" id="one">

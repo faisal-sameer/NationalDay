@@ -110,13 +110,13 @@
           
           <nav id="nav" class="navbar navbar-expand-md navbar-light   ">
               <div class="navbar-brand"  >
-            <a href="{{ url('/king') }}">           <img src="/ksa.png"  id="imgna" >
+            <a href="{{ url('/king') }}">           <img src="/img/ksa.png"  id="imgna" >
             </a>
             <a  href="https://twitter.com/uqu_edu">       
-                <img src="/uqu.png"  id="uqu" >
+                <img src="/img/uqu.png"  id="uqu" >
           </a>
             <a  href="https://twitter.com/dsauqu?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">       
-                  <img src="/01.png"  id="stu" >
+                  <img src="/img/01.png"  id="stu" >
             </a>
            
         </div>
@@ -178,12 +178,19 @@
                                  <a  class="nav-link" href="{{ url('challenge1') }}">التحدي الأول</a>  
                                  <br>
                                  <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a> 
-                                 <br>  
-                                 <a class="nav-link" href="{{ url('challenge3') }}">التحدي الثالث</a>  
-                                <br>
-                                <a  class="nav-link" href="{{ url('challenge4') }}">التحدي الرابع</a>  
-                                <br>
-                                <a  class="nav-link" href="{{ url('challenge7') }}">التحدي السابع</a> 
+                                    <br>
+                                 <a  class="nav-link" href="{{ url('challenge3') }}">التحدي الثالث</a>  
+                                    <br>
+                                    <a  class="nav-link" href="{{ url('challenge4') }}">التحدي الرابع</a>  
+                                    <br>
+                                    <a  class="nav-link" href="{{ url('challenge5') }}">التحدي الخامس</a>  
+                                    <br>
+                                    <a  class="nav-link" href="{{ url('challenge6') }}">التحدي السادس</a>  
+                                    <br>
+                                    <a  class="nav-link" href="{{ url('challenge7') }}">التحدي السابع</a> 
+    
+                                    <br>
+                                    <a  class="nav-link" href="{{ url('challenge8') }}">التحدي الثامن</a>  
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
