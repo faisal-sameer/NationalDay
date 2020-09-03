@@ -8,7 +8,7 @@
                 <h2 id="hh"> {{ __('التحدي الأول') }}</h2>
                 <div  id="cc">
 
-                    <img src="/ra_1.png"  id="imgc1" >
+                    <img src="/img/ra_1.png"  id="imgc1" >
                     <div class="form-group row">
                        
 

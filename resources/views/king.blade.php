@@ -5,7 +5,7 @@
 <div class="timeline">
   <div class="cont right">
     <div class="con">
-    <img  src="/king-az.jpeg" id="king" />  
+    <img  src="/img/king-az.jpeg" id="king" />  
   </div>
 
     <div id="stuff"><h3> الملك عبد العزيز بن عبد الرحمن بن فيصل آل سعود</h3>
@@ -17,7 +17,7 @@
   </div>
   <div class="cont left">
     <div class="con">
-      <img  src="/king-so.jpeg" id="king" />  
+      <img  src="/img/king-so.jpeg" id="king" />  
 
 
     </div>
@@ -30,7 +30,7 @@
   </div>
   <div class="cont right">
     <div class="con">
-    <img  src="/king-fs.jpeg" id="king" />  
+    <img  src="/img/king-fs.jpeg" id="king" />  
       </div>
       <div id="stuff"><h3>الملك فيصل بن عبد العزيز بن عبد الرحمن آل سعود  </h3>
         <br>
@@ -41,7 +41,7 @@
     </div>
   <div class="cont left">
     <div class="con">
-      <img  src="/king-kh.jpeg" id="king" />  
+      <img  src="/img/king-kh.jpeg" id="king" />  
  </div>
  <div id="stuff"><h3>الملك خالد بن عبد العزيز بن عبد الرحمن آل سعود </h3>
   <br>
@@ -53,7 +53,7 @@
 
   <div class="cont right">
     <div class="con">
-    <img  src="/fh.jpeg" id="king" />  
+    <img  src="/img/fh.jpeg" id="king" />  
       </div>
       <div id="stuff"><h3>الملك فهد بن عبد العزيز بن عبد الرحمن آل سعود </h3>
         <br>
@@ -65,7 +65,7 @@
 
   <div class="cont left">
     <div class="con">
-      <img  src="/ab.jpeg" id="king" />  
+      <img  src="/img/ab.jpeg" id="king" />  
 </div>
 <div id="stuff"><h3>الملك عبد الله بن عبد العزيز بن عبد الرحمن آل سعود </h3>
   <br>
@@ -77,7 +77,7 @@
 
   <div class="cont right">
     <div class="con">
-    <img  src="/king-sm.jpeg" id="king" />  
+    <img  src="/img/king-sm.jpeg" id="king" />  
       </div>
       <div id="stuff"><h3>الملك سلمان بن عبد العزيز بن عبد الرحمن آل سعود  </h3>
         <br>
@@ -87,7 +87,7 @@
     </div>
   <div class="cont left">
     <div class="con">
-      <img  src="/mbs.jpeg" id="king" />  
+      <img  src="/img/mbs.jpeg" id="king" />  
  </div>
  <div id="stuff"><h3>الأمير محمد بن سلمان بن عبد العزيز آل سعود</h3>
   <br>

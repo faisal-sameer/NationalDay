@@ -7,7 +7,7 @@
             <div >
                 <h2 id="hh"> {{ __('التحدي الثالث') }}</h2>
                 <div  id="cc">
-                    <img src="/ra3_.png"  id="imgc1" >
+                    <img src="/img/ra3_.png"  id="imgc1" >
 
 
                     

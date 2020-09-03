@@ -137,4 +137,28 @@ class HomeController extends Controller
 
         return view('user.challenge4')->with('user', $user_notification);
     }
+    protected function challenge5()
+    {
+        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
+
+        $user_notification = 10;
+
+        return view('user.challenge5')->with('user', $user_notification);
+    }
+    protected function challenge6()
+    {
+        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
+
+        $user_notification = 10;
+
+        return view('user.challenge6')->with('user', $user_notification);
+    }
+    protected function challenge8()
+    {
+        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
+
+        $user_notification = 10;
+
+        return view('user.challenge8')->with('user', $user_notification);
+    }
 }
