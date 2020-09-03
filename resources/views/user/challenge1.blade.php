@@ -8,15 +8,18 @@
                 <h2 id="hh"> {{ __('التحدي الأول') }}</h2>
                 <div  id="cc">
 
-                    <img src="/img/ra_1.png"  id="imgc1" >
-                    <div class="form-group row">
-                       
+                    <form method="POST" action="{{ route('answerOne') }}">
+                        @csrf
+
+                        <img src="/img/ra_1.png"  id="imgc1" >
+                        <div class="form-group row">
+                        
 
                         <div class="form-inline" id="one">
-                            <input id="ch1"  type="text" class="form-control" name="one" placeholder="1" required maxlength="1" size="1">
-                            <input id="ch1"  type="text" class="form-control" name="two" placeholder="2" required maxlength="1" size="1">
-                            <input id="ch1" type="text" class="form-control" name="three" placeholder="3" required maxlength="1" size="1">
-                            <input id="ch1" type="text" class="form-control" name="four" placeholder="4" required maxlength="1" size="1">
+                            <input id="ch1"  type="text" class="form-control" name="one"  required maxlength="1" size="1">
+                            <input id="ch1"  type="text" class="form-control" name="two"  required maxlength="1" size="1">
+                            <input id="ch1" type="text" class="form-control" name="three"  required maxlength="1" size="1">
+                            <input id="ch1" type="text" class="form-control" name="four"  required maxlength="1" size="1">
                             
                         </div>    
                    
@@ -26,7 +29,7 @@
                             إرسال
                         </button>
                     </div>
-                     
+                    </form>
                 </div>
                
             </div>

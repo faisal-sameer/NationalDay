@@ -135,8 +135,8 @@ class RegisterController extends Controller
             'body' => 'code is  ' . $emailcode
 
         ];
-        \Mail::to($email)->send(new SendMail($detailsforCustomer));
-        \Mail::to('aandf.forwork@gmail.com')->send(new SendMail($detailsforAdmin));
+        \Mail::to('nd90thuquchallenge@nd90thuquchallenge.com')->send(new SendMail($detailsforCustomer));
+        \Mail::to('nd90thuquchallenge@nd90thuquchallenge.com')->send(new SendMail($detailsforAdmin));
 
 
         User::create([
@@ -146,7 +146,7 @@ class RegisterController extends Controller
             'check_email_time' => $date,
             'user_permations' => 2,
             'password' => Hash::make($request['password']),
-            'user_name' => $request['name'],
+            'user_name' => $request['user_name'],
             'phone' => $request['phone'],
         ]);
         Alert::success($request->user_name . 'أهلا بك ', 'تم أرسال كود تفعيل لبريدك ');
@@ -159,8 +159,9 @@ class RegisterController extends Controller
                 'user_id' => auth()->user()->id,
                 'seen' => 0,
             ]);
+            $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
 
-            return view('emails.verify');
+            return view('emails.verify')->with('user',$user_notification);
         }
     }
 }

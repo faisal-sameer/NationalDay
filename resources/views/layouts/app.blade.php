@@ -177,8 +177,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                  <a  class="nav-link" href="{{ url('challenge1') }}">التحدي الأول</a>  
                                  <br>
-                                 <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a>  
-                                 <br>
+                                 <a  class="nav-link" href="{{ url('challenge2') }}">التحدي الثاني</a> 
+                                    <br>
                                  <a  class="nav-link" href="{{ url('challenge3') }}">التحدي الثالث</a>  
                                     <br>
                                     <a  class="nav-link" href="{{ url('challenge4') }}">التحدي الرابع</a>  
@@ -186,9 +186,12 @@
                                     <a  class="nav-link" href="{{ url('challenge5') }}">التحدي الخامس</a>  
                                     <br>
                                     <a  class="nav-link" href="{{ url('challenge6') }}">التحدي السادس</a>  
-
+                                    <br>
+                                    <a  class="nav-link" href="{{ url('challenge7') }}">التحدي السابع</a> 
+    
                                     <br>
                                     <a  class="nav-link" href="{{ url('challenge8') }}">التحدي الثامن</a>  
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

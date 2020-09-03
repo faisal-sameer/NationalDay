@@ -20,6 +20,7 @@ class CreateAttempsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('challenge_id')->unsigned()->index();
             $table->foreign('challenge_id')->references('id')->on('challenges')->onDelete('cascade');
+            $table->string('answer');
             $table->integer('attemp');
             $table->integer('status');
             $table->string('time');
