@@ -118,6 +118,7 @@ class RegisterController extends Controller
             //   Alert::error('خطأ', $validator->messages()->all());
             return back();
         }
+        Alert::success('', '');
         $emailcode = Str::random(6);
         $phonecode = Str::random(4);
 
@@ -161,7 +162,7 @@ class RegisterController extends Controller
             ]);
             $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
 
-            return view('emails.verify')->with('user',$user_notification);
+            return view('emails.verify')->with('user', $user_notification);
         }
     }
 }

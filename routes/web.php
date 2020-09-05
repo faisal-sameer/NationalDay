@@ -31,6 +31,9 @@ Route::get('/challenge4', 'HomeController@challenge4');
 Route::get('/challenge5', 'HomeController@challenge5');
 Route::get('/challenge6', 'HomeController@challenge6');
 Route::get('/challenge8', 'HomeController@challenge8');
+Route::get('/challenge9', 'HomeController@challenge9');
+Route::get('/challenge10', 'HomeController@challenge10');
+
 
 
 

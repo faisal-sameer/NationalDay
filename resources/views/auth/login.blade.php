@@ -41,10 +41,16 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button id="btnlog" type="submit" class="btn btn-primary">
+                                
+                                <button id="btnlog" type="submit" class="btn btn-primary"  onclick="spinner()">
                                     {{ __('تسجيل الدخول') }}
+                                    
                                 </button>
-
+                                <div class="loader">
+                                    <div class="loading">
+                                    </div>
+                                  </div>
+                               
                                 
                             </div>
                         </div>
