@@ -30,12 +30,14 @@ Route::get('/challenge3', 'HomeController@challenge3');
 Route::get('/challenge4', 'HomeController@challenge4');
 Route::get('/challenge5', 'HomeController@challenge5');
 Route::get('/challenge6', 'HomeController@challenge6');
-Route::get('/challenge8', 'HomeController@challenge8');
-
-
-
 Route::get('/challenge7', 'HomeController@challenge7');
-Route::post('/challenge7', 'HomeController@challenge7answer')->name('answerSeven');
+
+Route::get('/challenge8', 'HomeController@challenge8');
+Route::post('/challenge8', 'HomeController@challenge8answer')->name('answerEight');
+
+
+
+
 Route::get('/verify', 'HomeController@verify');
 Route::post('/verify', 'HomeController@checkverify')->name('verify');
 Route::post('/ResendCode', 'HomeController@ResendCode')->name('ResendCode');
@@ -48,4 +50,4 @@ Route::post('/Daily_RewardAway', 'AdminController@DailyRewardAway')->name('Daily
 Route::get('/Controller', 'AdminController@ControllerShow');
 Route::post('/Controller_challengeOpen', 'AdminController@ChallengeOpen')->name('ChallengeOpen');
 Route::post('/Controller_challengeClose', 'AdminController@ChallengeClose')->name('ChallengeClose');
-Route::post('/Controller_check', 'AdminController@CheckRecord')->name('DailyRewardAway');
+Route::post('/Controller_check', 'AdminController@CheckRecord');

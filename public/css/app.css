@@ -11257,6 +11257,10 @@ a.text-dark:focus {
 #ch3 {
     width: 8%;
 }
+#ch3text{
+    width: 30%;
+     margin-right: 1%;
+ }
 #clk {
     width: 20%;
 }
@@ -11375,6 +11379,7 @@ a.text-dark:focus {
         width: 15%;
         margin-right: 1%;
     }
+  
     body {
         background-image: url("/img/back1.png");
         background-repeat: no-repeat;

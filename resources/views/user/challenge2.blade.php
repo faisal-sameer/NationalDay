@@ -9,15 +9,16 @@
                 <div  id="cc">
                     <form method="POST" action="{{ route('answerTwo') }}">
                         @csrf
-                    <img src="/img/ra2_.png"  id="imgc1" >
+                    <img src="/img/ra2.png"  id="imgc1" >
 
 
                     
-                    <div class="form-group row">
-                        <div class="form-inline" id="two">
+                    <div class="row">
 
-                            <input id="ch3"  type="text" class="form-control" name="one" placeholder="1" required maxlength="1" size="1">
-                            <input id="ch3"  type="text" class="form-control" name="two" placeholder="2" required maxlength="1" size="1">
+                            <div  class="col-md-2">
+                            <input id="ch3text"  type="text" name="one" placeholder="1" required maxlength="1" size="1">
+                            <input id="ch3text" type="text" name="two" placeholder="2" required maxlength="1" size="1">
+                        </div>
                             <input id="ch3" type="text" class="form-control" name="three" placeholder="3" required maxlength="1"size="1">
                             <input id="ch3" type="text" class="form-control" name="four" placeholder="4" required maxlength="1" size="1">
                             <input id="ch3" type="text" class="form-control" name="five" placeholder="5" required maxlength="1" size="1">
@@ -63,4 +64,9 @@
         </div>
     </div>
 </div>
+<script>    
+    var sites = {!! json_encode($sites->toArray()) !!};
+    console.log(sites)
+</script>
+
 @endsection

@@ -23,8 +23,10 @@ class AdminController extends Controller
 
     protected function DailyRewardShow(){
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+        $sites = User::all() ;
+        $arr = Array('user'=>$user_notification , 'names'=>$sites);
 
-        return view('reword')->with('user',$user_notification);
+        return view('reword' , $arr );
     }
     protected function DailyRewardHome(){
         
