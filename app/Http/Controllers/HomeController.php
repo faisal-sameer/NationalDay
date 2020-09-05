@@ -265,6 +265,7 @@ class HomeController extends Controller
         $countinfo = count($challengeinfo);
         $countAnswer = count($challengeAnswer);
         $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
+
         if ($ChallengeTwo->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
 
@@ -412,6 +413,597 @@ class HomeController extends Controller
 
         return view('home')->with('user', $user_notification);
     }
+    protected function challenge3()
+    {
+        $ChallengeThree = Challenge::where('id', 3)->first();
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        if ($ChallengeThree->status == 2) {
+            Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
+
+            return view('home')->with('user', $user_notification);
+        } else {
+            $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeThree->id])->get()->last();
+            $time = Carbon::now()->addHours(3);
+
+
+            if ($attemp == null) {
+
+                return view('user.challenge3')->with('user', $user_notification);
+            } else {
+                if ($attemp->status == 2 && $attemp->time > $time) {
+                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 3) {
+                    Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 4) {
+                    Alert::success('لقد جاوبت على هذا السؤال بالفعل ', 'لا يمكنك إعادة إرسال للجواب ');
+
+                    return view('home')->with('user', $user_notification);
+                } else {
+                    return view('user.challenge3')->with('user', $user_notification);
+                }
+
+                return view('user.challenge3')->with('user', $user_notification);
+            }
+        }
+    }
+    protected function challenge3answer(Request $request)
+    {
+        $answerThree =   $request->one .  $request->two .  $request->three . $request->four . $request->five .  $request->six;
+        $ChallengeThree = Challenge::where('id', 3)->first();
+        $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeThree->id])->get();
+
+        $time = Carbon::now()->addHours(3);
+        $timeClose = Carbon::now()->addHours(3)->addSeconds(90);
+
+        if ($answerThree == $ChallengeThree->answer) {
+            if (strpos(auth()->user()->email, "uqu") == true) {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 1,
+                ]);
+            } else {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 0,
+                ]);
+            }
+            if ($attemp->count() == null) {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerThree,
+                    'time' => $time,
+                ]);
+            } else {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerThree,
+                    'time' => $time,
+                ]);
+            }
+        } else {
+            if ($attemp->count() + 1  == 3) {
+
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerThree,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 6) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerThree,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 9) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 3,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerThree,
+                    'time' => $time,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                return view('home')->with('user', $user_notification);
+            } else {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeThree->id,
+                    'status' => 1,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerThree,
+                    'time' => $time,
+                ]);
+
+                Alert::warning('الإجابة غير صحيحة ', 'حاول مره أخرى ');
+                return back();
+            }
+        }
+        Alert::success('إجابة صحيحة ', 'مبروك لقد دخلت على السحب اليومي و سحب الجائزة الكبرى ');
+
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        return view('home')->with('user', $user_notification);
+    }
+
+    protected function challenge4()
+    {
+        $ChallengeFour = Challenge::where('id', 4)->first();
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        if ($ChallengeFour->status == 2) {
+            Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
+
+            return view('home')->with('user', $user_notification);
+        } else {
+            $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeFour->id])->get()->last();
+            $time = Carbon::now()->addHours(3);
+
+
+            if ($attemp == null) {
+
+                return view('user.challenge4')->with('user', $user_notification);
+            } else {
+                if ($attemp->status == 2 && $attemp->time > $time) {
+                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 3) {
+                    Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 4) {
+                    Alert::success('لقد جاوبت على هذا السؤال بالفعل ', 'لا يمكنك إعادة إرسال للجواب ');
+
+                    return view('home')->with('user', $user_notification);
+                } else {
+                    return view('user.challenge4')->with('user', $user_notification);
+                }
+
+                return view('user.challenge4')->with('user', $user_notification);
+            }
+        }
+    }
+    protected function challenge4answer(Request $request)
+    {
+        $answerFour =   $request->one .  $request->two .  $request->three . $request->four . $request->five .  $request->six;
+        $ChallengeFour = Challenge::where('id', 4)->first();
+        $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeFour->id])->get();
+
+        $time = Carbon::now()->addHours(3);
+        $timeClose = Carbon::now()->addHours(3)->addSeconds(90);
+
+        if ($answerFour == $ChallengeFour->answer) {
+            if (strpos(auth()->user()->email, "uqu") == true) {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 1,
+                ]);
+            } else {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 0,
+                ]);
+            }
+            if ($attemp->count() == null) {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFour,
+                    'time' => $time,
+                ]);
+            } else {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFour,
+                    'time' => $time,
+                ]);
+            }
+        } else {
+            if ($attemp->count() + 1  == 3) {
+
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFour,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 6) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFour,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 9) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 3,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFour,
+                    'time' => $time,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                return view('home')->with('user', $user_notification);
+            } else {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFour->id,
+                    'status' => 1,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFour,
+                    'time' => $time,
+                ]);
+
+                Alert::warning('الإجابة غير صحيحة ', 'حاول مره أخرى ');
+                return back();
+            }
+        }
+        Alert::success('إجابة صحيحة ', 'مبروك لقد دخلت على السحب اليومي و سحب الجائزة الكبرى ');
+
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        return view('home')->with('user', $user_notification);
+    }
+
+    protected function challenge5()
+    {
+        $ChallengeFive = Challenge::where('id', 5)->first();
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        if ($ChallengeFive->status == 2) {
+            Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
+
+            return view('home')->with('user', $user_notification);
+        } else {
+            $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeFive->id])->get()->last();
+            $time = Carbon::now()->addHours(3);
+
+
+            if ($attemp == null) {
+
+                return view('user.challenge5')->with('user', $user_notification);
+            } else {
+                if ($attemp->status == 2 && $attemp->time > $time) {
+                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 3) {
+                    Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 4) {
+                    Alert::success('لقد جاوبت على هذا السؤال بالفعل ', 'لا يمكنك إعادة إرسال للجواب ');
+
+                    return view('home')->with('user', $user_notification);
+                } else {
+                    return view('user.challenge5')->with('user', $user_notification);
+                }
+
+                return view('user.challenge5')->with('user', $user_notification);
+            }
+        }
+    }
+    protected function challenge5answer(Request $request)
+    {
+        $answerFive =   $request->one .  $request->two . ' ' .  $request->three . $request->four . $request->five . ' ' . $request->six .
+            $request->seven .  $request->eaght . ' ' .  $request->nine .  $request->ten .  $request->eleven .  $request->twelv . ' ' .  $request->therten .  $request->fourten .
+            $request->fiften .  $request->sixten . ' ' .  $request->seventen .  $request->eaghten .  $request->ninten .  $request->twenty . ' ' .  $request->twentyone .  $request->twentytwo .
+            $request->twentythree .  $request->twentyfour;
+
+        $ChallengeFive = Challenge::where('id', 5)->first();
+        $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeFive->id])->get();
+
+        $time = Carbon::now()->addHours(3);
+        $timeClose = Carbon::now()->addHours(3)->addSeconds(90);
+
+        if ($answerFive == $ChallengeFive->answer) {
+            if (strpos(auth()->user()->email, "uqu") == true) {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 1,
+                ]);
+            } else {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 0,
+                ]);
+            }
+            if ($attemp->count() == null) {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFive,
+                    'time' => $time,
+                ]);
+            } else {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFive,
+                    'time' => $time,
+                ]);
+            }
+        } else {
+            if ($attemp->count() + 1  == 3) {
+
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFive,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 6) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFive,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 9) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 3,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFive,
+                    'time' => $time,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                return view('home')->with('user', $user_notification);
+            } else {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeFive->id,
+                    'status' => 1,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerFive,
+                    'time' => $time,
+                ]);
+
+                Alert::warning('الإجابة غير صحيحة ', 'حاول مره أخرى ');
+                return back();
+            }
+        }
+        Alert::success('إجابة صحيحة ', 'مبروك لقد دخلت على السحب اليومي و سحب الجائزة الكبرى ');
+
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        return view('home')->with('user', $user_notification);
+    }
+
+    protected function challenge6()
+    {
+        $ChallengeSix = Challenge::where('id', 6)->first();
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        if ($ChallengeSix->status == 2) {
+            Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
+
+            return view('home')->with('user', $user_notification);
+        } else {
+            $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeSix->id])->get()->last();
+            $time = Carbon::now()->addHours(3);
+
+
+            if ($attemp == null) {
+
+                return view('user.challenge6')->with('user', $user_notification);
+            } else {
+                if ($attemp->status == 2 && $attemp->time > $time) {
+                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 3) {
+                    Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 4) {
+                    Alert::success('لقد جاوبت على هذا السؤال بالفعل ', 'لا يمكنك إعادة إرسال للجواب ');
+
+                    return view('home')->with('user', $user_notification);
+                } else {
+                    return view('user.challenge6')->with('user', $user_notification);
+                }
+
+                return view('user.challenge6')->with('user', $user_notification);
+            }
+        }
+    }
+    protected function challenge6answer(Request $request)
+    {
+        $answerSix =   $request->one .  $request->two . ' ' .  $request->three . $request->four . $request->five . ' ' . $request->six .
+            $request->seven .  $request->eaght . ' ' .  $request->nine .  $request->ten .  $request->eleven .  $request->twelv . ' ' .  $request->therten .  $request->fourten .
+            $request->fiften .  $request->sixten . ' ' .  $request->seventen .  $request->eaghten .  $request->ninten .  $request->twenty . ' ' .  $request->twentyone .  $request->twentytwo .
+            $request->twentythree .  $request->twentyfour;
+
+        $ChallengeSix = Challenge::where('id', 6)->first();
+        $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeSix->id])->get();
+
+        $time = Carbon::now()->addHours(3);
+        $timeClose = Carbon::now()->addHours(3)->addSeconds(90);
+
+        if ($answerSix == $ChallengeSix->answer) {
+            if (strpos(auth()->user()->email, "uqu") == true) {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 1,
+                ]);
+            } else {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 0,
+                ]);
+            }
+            if ($attemp->count() == null) {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerSix,
+                    'time' => $time,
+                ]);
+            } else {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerSix,
+                    'time' => $time,
+                ]);
+            }
+        } else {
+            if ($attemp->count() + 1  == 3) {
+
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerSix,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 6) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerSix,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 9) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 3,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerSix,
+                    'time' => $time,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                return view('home')->with('user', $user_notification);
+            } else {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeSix->id,
+                    'status' => 1,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerSix,
+                    'time' => $time,
+                ]);
+
+                Alert::warning('الإجابة غير صحيحة ', 'حاول مره أخرى ');
+                return back();
+            }
+        }
+        Alert::success('إجابة صحيحة ', 'مبروك لقد دخلت على السحب اليومي و سحب الجائزة الكبرى ');
+
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        return view('home')->with('user', $user_notification);
+    }
 
     protected function challenge7()
     {
@@ -452,6 +1044,8 @@ class HomeController extends Controller
             }
         }
     }
+
+
     protected function challenge7answer(Request $request)
     {
         $answerSeven =   $request->one .  $request->two .  $request->three . $request->four . $request->five .  $request->six;
@@ -560,54 +1154,308 @@ class HomeController extends Controller
         return view('home')->with('user', $user_notification);
     }
 
-    protected function challenge3()
-    {
-        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
 
-        $user_notification = 10;
-
-        return view('user.challenge3')->with('user', $user_notification);
-    }
-    protected function challenge4()
-    {
-        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
-
-        $user_notification = 10;
-
-        return view('user.challenge4')->with('user', $user_notification);
-    }
-    protected function challenge5()
-    {
-        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
-
-        $user_notification = 10;
-
-        return view('user.challenge5')->with('user', $user_notification);
-    }
-    protected function challenge6()
-    {
-        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
-
-        $user_notification = 10;
-
-        return view('user.challenge6')->with('user', $user_notification);
-    }
     protected function challenge8()
     {
-        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
 
-        $user_notification = 10;
+        $ChallengeEight = Challenge::where('id', 8)->first();
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
 
-        return view('user.challenge8')->with('user', $user_notification);
+        if ($ChallengeEight->status == 2) {
+            Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
+
+            return view('home')->with('user', $user_notification);
+        } else {
+            $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeEight->id])->get()->last();
+            $time = Carbon::now()->addHours(3);
+
+
+            if ($attemp == null) {
+
+                return view('user.challenge8')->with('user', $user_notification);
+            } else {
+                if ($attemp->status == 2 && $attemp->time > $time) {
+                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 3) {
+                    Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 4) {
+                    Alert::success('لقد جاوبت على هذا السؤال بالفعل ', 'لا يمكنك إعادة إرسال للجواب ');
+
+                    return view('home')->with('user', $user_notification);
+                } else {
+                    return view('user.challenge8')->with('user', $user_notification);
+                }
+
+                return view('user.challenge8')->with('user', $user_notification);
+            }
+        }
     }
+    protected function challenge8answer(Request $request)
+    {
+        $answerEight =   $request->one .  $request->two .  $request->three . $request->four  . ' ' . $request->five . $request->six . ' ' .
+            $request->seven .  $request->eaght .  $request->nine .  $request->ten .  $request->eleven;
+
+
+        $ChallengeEight = Challenge::where('id', 8)->first();
+        $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeEight->id])->get();
+
+        $time = Carbon::now()->addHours(3);
+        $timeClose = Carbon::now()->addHours(3)->addSeconds(90);
+
+        if ($answerEight == $ChallengeEight->answer) {
+            if (strpos(auth()->user()->email, "uqu") == true) {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 1,
+                ]);
+            } else {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 0,
+                ]);
+            }
+            if ($attemp->count() == null) {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerEight,
+                    'time' => $time,
+                ]);
+            } else {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerEight,
+                    'time' => $time,
+                ]);
+            }
+        } else {
+            if ($attemp->count() + 1  == 3) {
+
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerEight,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 6) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerEight,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 9) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 3,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerEight,
+                    'time' => $time,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                return view('home')->with('user', $user_notification);
+            } else {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeEight->id,
+                    'status' => 1,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerEight,
+                    'time' => $time,
+                ]);
+
+                Alert::warning('الإجابة غير صحيحة ', 'حاول مره أخرى ');
+                return back();
+            }
+        }
+        Alert::success('إجابة صحيحة ', 'مبروك لقد دخلت على السحب اليومي و سحب الجائزة الكبرى ');
+
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        return view('home')->with('user', $user_notification);
+    }
+
     protected function challenge9()
     {
-        Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');
 
-        $user_notification = 10;
+        $ChallengeNine = Challenge::where('id', 9)->first();
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
 
-        return view('user.challenge9')->with('user', $user_notification);
+        if ($ChallengeNine->status == 2) {
+            Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
+
+            return view('home')->with('user', $user_notification);
+        } else {
+            $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeNine->id])->get()->last();
+            $time = Carbon::now()->addHours(3);
+
+
+            if ($attemp == null) {
+
+                return view('user.challenge9')->with('user', $user_notification);
+            } else {
+                if ($attemp->status == 2 && $attemp->time > $time) {
+                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 3) {
+                    Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                    return view('home')->with('user', $user_notification);
+                } else if ($attemp->status == 4) {
+                    Alert::success('لقد جاوبت على هذا السؤال بالفعل ', 'لا يمكنك إعادة إرسال للجواب ');
+
+                    return view('home')->with('user', $user_notification);
+                } else {
+                    return view('user.challenge9')->with('user', $user_notification);
+                }
+
+                return view('user.challenge9')->with('user', $user_notification);
+            }
+        }
     }
+    protected function challenge9answer(Request $request)
+    {
+        $answerNine =   $request->one .  $request->two . ' ' .  $request->three . $request->four . $request->five . ' ' . $request->six .
+            $request->seven .  $request->eaght . ' ' .  $request->nine .  $request->ten .  $request->eleven .  $request->twelv . ' ' .  $request->therten .  $request->fourten .
+            $request->fiften .  $request->sixten . ' ' .  $request->seventen .  $request->eaghten .  $request->ninten .  $request->twenty . ' ' .  $request->twentyone .  $request->twentytwo .
+            $request->twentythree .  $request->twentyfour;
+
+        $ChallengeNine = Challenge::where('id', 9)->first();
+        $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeNine->id])->get();
+
+        $time = Carbon::now()->addHours(3);
+        $timeClose = Carbon::now()->addHours(3)->addSeconds(90);
+
+        if ($answerNine == $ChallengeNine->answer) {
+            if (strpos(auth()->user()->email, "uqu") == true) {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 1,
+                ]);
+            } else {
+                Record::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 1,
+                    'time' => $time,
+                    'from' => 0,
+                ]);
+            }
+            if ($attemp->count() == null) {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerNine,
+                    'time' => $time,
+                ]);
+            } else {
+                Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 4,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerNine,
+                    'time' => $time,
+                ]);
+            }
+        } else {
+            if ($attemp->count() + 1  == 3) {
+
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerNine,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 6) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 2,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerNine,
+                    'time' => $timeClose,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+
+                return view('home')->with('user', $user_notification);
+            } else  if ($attemp->count() + 1  == 9) {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 3,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerNine,
+                    'time' => $time,
+                ]);
+                $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+                Alert::error('لقد انتهت محاولاتك ال 9', 'تم إغلاق السؤال ');
+
+                return view('home')->with('user', $user_notification);
+            } else {
+                $attemp =  Attemp::create([
+                    'user_id' => auth()->user()->id,
+                    'challenge_id' => $ChallengeNine->id,
+                    'status' => 1,
+                    'attemp' => $attemp->count() + 1,
+                    'answer' =>  $answerNine,
+                    'time' => $time,
+                ]);
+
+                Alert::warning('الإجابة غير صحيحة ', 'حاول مره أخرى ');
+                return back();
+            }
+        }
+        Alert::success('إجابة صحيحة ', 'مبروك لقد دخلت على السحب اليومي و سحب الجائزة الكبرى ');
+
+        $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+
+        return view('home')->with('user', $user_notification);
+    }
+
     protected function challenge10()
     {
         Alert::image('Image Title!', 'Image Description', '/ksaa.jpg', 'Image Width', 'Image Height');

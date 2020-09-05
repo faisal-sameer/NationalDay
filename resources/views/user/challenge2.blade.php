@@ -120,4 +120,9 @@
         </div>
     </div>
 </div>
+<script>    
+    var sites = {!! json_encode($sites->toArray()) !!};
+    console.log(sites)
+</script>
+
 @endsection

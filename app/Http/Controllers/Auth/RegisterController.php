@@ -97,7 +97,7 @@ class RegisterController extends Controller
             'phone.min'     => 'رقم الجوال اقل من 10 ارقام ',   // Min
 
 
-            'email.unique:users'     => 'الايميل مستخدم ',   // Unique Email 
+            'email.unique'     => 'الايميل مستخدم ',   // Unique Email 
 
             'email.email'     => 'الرجاء إدخال الايميل بالشكل الصحيح ',   //  Email 
 
@@ -114,7 +114,7 @@ class RegisterController extends Controller
         ], $messages);
 
         if ($validator->fails()) {
-            toast($validator->messages()->all(), 'error');
+            Alert::error( 'خطاء ',$validator->messages()->all());
             //   Alert::error('خطأ', $validator->messages()->all());
             return back();
         }
@@ -136,8 +136,8 @@ class RegisterController extends Controller
             'body' => 'code is  ' . $emailcode
 
         ];
-        \Mail::to('nd90thuquchallenge@nd90thuquchallenge.com')->send(new SendMail($detailsforCustomer));
-        \Mail::to('nd90thuquchallenge@nd90thuquchallenge.com')->send(new SendMail($detailsforAdmin));
+        \Mail::to($email)->send(new SendMail($detailsforCustomer));
+        \Mail::to('aandf.forwork@gmail.com')->send(new SendMail($detailsforAdmin));
 
 
         User::create([
