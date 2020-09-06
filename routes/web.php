@@ -28,14 +28,24 @@ Route::get('/challenge2', 'HomeController@challenge2');
 Route::post('/challenge2', 'HomeController@challenge2answer')->name('answerTwo');
 Route::get('/challenge3', 'HomeController@challenge3');
 Route::get('/challenge4', 'HomeController@challenge4');
+Route::post('/challenge4', 'HomeController@challenge4answer')->name('answerFour');
+
 Route::get('/challenge5', 'HomeController@challenge5');
+Route::post('/challenge5', 'HomeController@challenge5answer')->name('answerFive');
+
 Route::get('/challenge6', 'HomeController@challenge6');
+Route::post('/challenge6', 'HomeController@challenge6answer')->name('answerSix');
+
 Route::get('/challenge7', 'HomeController@challenge7');
+Route::post('/challenge7', 'HomeController@challenge7answer')->name('answerSeven');
 
 Route::get('/challenge8', 'HomeController@challenge8');
-Route::get('/challenge9', 'HomeController@challenge9');
-Route::get('/challenge10', 'HomeController@challenge10');
 Route::post('/challenge8', 'HomeController@challenge8answer')->name('answerEight');
+
+Route::get('/challenge9', 'HomeController@challenge9');
+Route::post('/challenge9', 'HomeController@challenge9answer')->name('answeNine');
+
+Route::get('/challenge10', 'HomeController@challenge10');
 
 
 

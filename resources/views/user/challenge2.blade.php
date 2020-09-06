@@ -100,7 +100,6 @@
                                   <label  class="col-form-label">عدد الإجابات الصحيحة :{{$challengeAnswer}} </label>
                                  </div>
                                  <div class="form-group">
-                                    <label  class="col-form-label">الإجابة : </label>
                                     <label >الإجابة سوف تكون بالأحرف العربية من اليمين الى اليسار </label>
                                    </div>
                                    
@@ -120,9 +119,5 @@
         </div>
     </div>
 </div>
-<script>    
-    var sites = {!! json_encode($sites->toArray()) !!};
-    console.log(sites)
-</script>
 
 @endsection

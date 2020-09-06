@@ -319,7 +319,7 @@
   
 
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" >
+<body  data-spy="scroll" data-target=".navbar" data-offset="60" >
     @include('sweetalert::alert')
 
     <div id="app">
@@ -375,6 +375,10 @@
 
                                 <a class="nav-link" href="{{ url('/') }}">عن المسابقة </a>  
                             </li>
+                            <li class="nav-item">
+
+                              <a class="nav-link" href="{{ url('/king') }}">تاريخ المملكة </a>  
+                          </li>
                         @else
                             <div class="form-inline" id="dr">
                               
@@ -435,6 +439,7 @@
 
                                     @endif
                                     <a class="dropdown-item" href="{{ url('/') }}">عن المسابقة</a>  
+                                    <a class="dropdown-item" href="{{ url('/king') }}">تاريخ المملكة </a>  
 
                                       <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

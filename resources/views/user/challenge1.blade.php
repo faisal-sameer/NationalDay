@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div >
-                <h2 id="hh"> {{ __('التحدي الأول') }}</h2>
+                <h2 id="hh"> 
+                    <img src="img/infoo.png" data-toggle="modal" data-target="#exampleModal" id="info">{{ __('التحدي الأول') }}</h2>
                 <div  id="cc">
 
                     <form method="POST" action="{{ route('answerOne') }}">
@@ -31,7 +32,38 @@
                     </div>
                     </form>
                 </div>
-               
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content center">
+                        <div class="modal-header">
+                          <br>
+                          <h3 class="modal-title" id="exampleModalLabel" >معلومات عن التحدي الأول</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                      
+                            <div class="form-group">
+                              <label class="col-form-label" id="lab">{{$challengeinfo}}:عدد المشاركين</label>
+
+                              
+                          </div>
+                            <div class="form-group">
+                              <label  class="col-form-label" id="lab">{{$challengeAnswer}}:عدد الإجابات الصحيحة </label>
+                             </div>
+                             <div class="form-group">
+                              <label >الإجابة سوف تكون بالأرقام الانجليزية من اليسار لليمين </label>
+                            </div>
+                               
+
+                           
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
             </div>
         </div>
     </div>

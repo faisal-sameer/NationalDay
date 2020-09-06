@@ -11258,10 +11258,10 @@ a.text-dark:focus {
 #ch3 {
     width: 8%;
 }
-#ch3text{
+#ch3text {
     width: 30%;
-     margin-right: 1%;
- }
+    margin-right: 1%;
+}
 #clk {
     width: 20%;
 }
@@ -11387,6 +11387,10 @@ a.text-dark:focus {
     width: 5%;
     margin-right: 4%;
 }
+#lab {
+    direction: rtl;
+    text-align: center;
+}
 
 @media only screen and (max-width: 970px) {
     #group1 {
@@ -11493,7 +11497,7 @@ a.text-dark:focus {
         width: 2%;
         margin-right: 1%;
     }
-  
+
     body {
         background-image: url("/img/back1.png");
         background-repeat: no-repeat;

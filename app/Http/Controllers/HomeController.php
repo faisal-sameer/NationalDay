@@ -114,6 +114,12 @@ class HomeController extends Controller
 
         $ChallengeOne = Challenge::where('id', 1)->first();
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+        $challengeinfo = Attemp::where('challenge_id', 1)->get();
+        $challengeAnswer = Record::where('challenge_id', 1)->get();
+        $countinfo = count($challengeinfo);
+        $countAnswer = count($challengeAnswer);
+        $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
+
 
         if ($ChallengeOne->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
@@ -126,10 +132,10 @@ class HomeController extends Controller
 
             if ($attemp == null) {
 
-                return view('user.challenge1')->with('user', $user_notification);
+                return view('user.challenge1', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -141,10 +147,10 @@ class HomeController extends Controller
 
                     return view('home')->with('user', $user_notification);
                 } else {
-                    return view('user.challenge1')->with('user', $user_notification);
+                    return view('user.challenge1', $arr);
                 }
 
-                return view('user.challenge1')->with('user', $user_notification);
+                return view('user.challenge1', $arr);
             }
         }
     }
@@ -206,7 +212,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -219,7 +225,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -280,7 +286,7 @@ class HomeController extends Controller
                 return view('user.challenge2', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -364,7 +370,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -377,7 +383,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -432,7 +438,7 @@ class HomeController extends Controller
                 return view('user.challenge3')->with('user', $user_notification);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -509,7 +515,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -522,7 +528,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -563,6 +569,11 @@ class HomeController extends Controller
     {
         $ChallengeFour = Challenge::where('id', 4)->first();
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+        $challengeinfo = Attemp::where('challenge_id', 4)->get();
+        $challengeAnswer = Record::where('challenge_id', 4)->get();
+        $countinfo = count($challengeinfo);
+        $countAnswer = count($challengeAnswer);
+        $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
 
         if ($ChallengeFour->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
@@ -575,10 +586,10 @@ class HomeController extends Controller
 
             if ($attemp == null) {
 
-                return view('user.challenge4')->with('user', $user_notification);
+                return view('user.challenge4', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -590,16 +601,17 @@ class HomeController extends Controller
 
                     return view('home')->with('user', $user_notification);
                 } else {
-                    return view('user.challenge4')->with('user', $user_notification);
+                    return view('user.challenge4', $arr);
                 }
 
-                return view('user.challenge4')->with('user', $user_notification);
+                return view('user.challenge4', $arr);
             }
         }
     }
     protected function challenge4answer(Request $request)
     {
-        $answerFour =   $request->one .  $request->two .  $request->three . $request->four . $request->five .  $request->six;
+        $answerFour =     $request->one .  $request->two  .  $request->three . $request->four . $request->five . ' ' . $request->six .
+            $request->seven .  $request->eaght  .  $request->nine .  $request->ten . ' ' .  $request->eleven .  $request->twelv .   $request->therten;
         $ChallengeFour = Challenge::where('id', 4)->first();
         $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeFour->id])->get();
 
@@ -655,7 +667,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -668,7 +680,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -709,7 +721,11 @@ class HomeController extends Controller
     {
         $ChallengeFive = Challenge::where('id', 5)->first();
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-
+        $challengeinfo = Attemp::where('challenge_id', 5)->get();
+        $challengeAnswer = Record::where('challenge_id', 5)->get();
+        $countinfo = count($challengeinfo);
+        $countAnswer = count($challengeAnswer);
+        $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
         if ($ChallengeFive->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
 
@@ -721,10 +737,10 @@ class HomeController extends Controller
 
             if ($attemp == null) {
 
-                return view('user.challenge5')->with('user', $user_notification);
+                return view('user.challenge5', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -736,19 +752,16 @@ class HomeController extends Controller
 
                     return view('home')->with('user', $user_notification);
                 } else {
-                    return view('user.challenge5')->with('user', $user_notification);
+                    return view('user.challenge5', $arr);
                 }
 
-                return view('user.challenge5')->with('user', $user_notification);
+                return view('user.challenge5', $arr);
             }
         }
     }
     protected function challenge5answer(Request $request)
     {
-        $answerFive =   $request->one .  $request->two . ' ' .  $request->three . $request->four . $request->five . ' ' . $request->six .
-            $request->seven .  $request->eaght . ' ' .  $request->nine .  $request->ten .  $request->eleven .  $request->twelv . ' ' .  $request->therten .  $request->fourten .
-            $request->fiften .  $request->sixten . ' ' .  $request->seventen .  $request->eaghten .  $request->ninten .  $request->twenty . ' ' .  $request->twentyone .  $request->twentytwo .
-            $request->twentythree .  $request->twentyfour;
+        $answerFive =   $request->seven . $request->six . $request->five . $request->four . $request->three .  $request->two . $request->one;
 
         $ChallengeFive = Challenge::where('id', 5)->first();
         $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeFive->id])->get();
@@ -805,7 +818,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -818,7 +831,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -859,7 +872,11 @@ class HomeController extends Controller
     {
         $ChallengeSix = Challenge::where('id', 6)->first();
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-
+        $challengeinfo = Attemp::where('challenge_id', 6)->get();
+        $challengeAnswer = Record::where('challenge_id', 6)->get();
+        $countinfo = count($challengeinfo);
+        $countAnswer = count($challengeAnswer);
+        $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
         if ($ChallengeSix->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
 
@@ -871,10 +888,10 @@ class HomeController extends Controller
 
             if ($attemp == null) {
 
-                return view('user.challenge6')->with('user', $user_notification);
+                return view('user.challenge6', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -886,19 +903,16 @@ class HomeController extends Controller
 
                     return view('home')->with('user', $user_notification);
                 } else {
-                    return view('user.challenge6')->with('user', $user_notification);
+                    return view('user.challenge6', $arr);
                 }
 
-                return view('user.challenge6')->with('user', $user_notification);
+                return view('user.challenge6', $arr);
             }
         }
     }
     protected function challenge6answer(Request $request)
     {
-        $answerSix =   $request->one .  $request->two . ' ' .  $request->three . $request->four . $request->five . ' ' . $request->six .
-            $request->seven .  $request->eaght . ' ' .  $request->nine .  $request->ten .  $request->eleven .  $request->twelv . ' ' .  $request->therten .  $request->fourten .
-            $request->fiften .  $request->sixten . ' ' .  $request->seventen .  $request->eaghten .  $request->ninten .  $request->twenty . ' ' .  $request->twentyone .  $request->twentytwo .
-            $request->twentythree .  $request->twentyfour;
+        $answerSix =  $request->five . $request->four . $request->three .  $request->two . $request->one;
 
         $ChallengeSix = Challenge::where('id', 6)->first();
         $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeSix->id])->get();
@@ -955,7 +969,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -968,7 +982,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -1010,6 +1024,11 @@ class HomeController extends Controller
 
         $ChallengeSeven = Challenge::where('id', 7)->first();
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+        $challengeinfo = Attemp::where('challenge_id', 7)->get();
+        $challengeAnswer = Record::where('challenge_id', 7)->get();
+        $countinfo = count($challengeinfo);
+        $countAnswer = count($challengeAnswer);
+        $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
 
         if ($ChallengeSeven->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
@@ -1022,10 +1041,10 @@ class HomeController extends Controller
 
             if ($attemp == null) {
 
-                return view('user.challenge7')->with('user', $user_notification);
+                return view('user.challenge7', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -1037,10 +1056,10 @@ class HomeController extends Controller
 
                     return view('home')->with('user', $user_notification);
                 } else {
-                    return view('user.challenge7')->with('user', $user_notification);
+                    return view('user.challenge7', $arr);
                 }
 
-                return view('user.challenge7')->with('user', $user_notification);
+                return view('user.challenge7', $arr);
             }
         }
     }
@@ -1104,7 +1123,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -1117,7 +1136,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -1160,6 +1179,11 @@ class HomeController extends Controller
 
         $ChallengeEight = Challenge::where('id', 8)->first();
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+        $challengeinfo = Attemp::where('challenge_id', 8)->get();
+        $challengeAnswer = Record::where('challenge_id', 8)->get();
+        $countinfo = count($challengeinfo);
+        $countAnswer = count($challengeAnswer);
+        $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
 
         if ($ChallengeEight->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
@@ -1172,10 +1196,10 @@ class HomeController extends Controller
 
             if ($attemp == null) {
 
-                return view('user.challenge8')->with('user', $user_notification);
+                return view('user.challenge8', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -1187,10 +1211,10 @@ class HomeController extends Controller
 
                     return view('home')->with('user', $user_notification);
                 } else {
-                    return view('user.challenge8')->with('user', $user_notification);
+                    return view('user.challenge8', $arr);
                 }
 
-                return view('user.challenge8')->with('user', $user_notification);
+                return view('user.challenge8', $arr);
             }
         }
     }
@@ -1255,7 +1279,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -1268,7 +1292,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
@@ -1310,6 +1334,11 @@ class HomeController extends Controller
 
         $ChallengeNine = Challenge::where('id', 9)->first();
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
+        $challengeinfo = Attemp::where('challenge_id', 9)->get();
+        $challengeAnswer = Record::where('challenge_id', 9)->get();
+        $countinfo = count($challengeinfo);
+        $countAnswer = count($challengeAnswer);
+        $arr = array('challengeinfo' => $countinfo, 'challengeAnswer' =>  $countAnswer, 'user' => $user_notification);
 
         if ($ChallengeNine->status == 2) {
             Alert::info('لا يمكنك الدخول على هذه الصفحة ', 'لم يبدا وقت السوال بعد ');
@@ -1322,10 +1351,10 @@ class HomeController extends Controller
 
             if ($attemp == null) {
 
-                return view('user.challenge9')->with('user', $user_notification);
+                return view('user.challenge9', $arr);
             } else {
                 if ($attemp->status == 2 && $attemp->time > $time) {
-                    Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                    Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                     return view('home')->with('user', $user_notification);
                 } else if ($attemp->status == 3) {
@@ -1337,19 +1366,17 @@ class HomeController extends Controller
 
                     return view('home')->with('user', $user_notification);
                 } else {
-                    return view('user.challenge9')->with('user', $user_notification);
+                    return view('user.challenge9', $arr);
                 }
 
-                return view('user.challenge9')->with('user', $user_notification);
+                return view('user.challenge9', $arr);
             }
         }
     }
     protected function challenge9answer(Request $request)
     {
-        $answerNine =   $request->one .  $request->two . ' ' .  $request->three . $request->four . $request->five . ' ' . $request->six .
-            $request->seven .  $request->eaght . ' ' .  $request->nine .  $request->ten .  $request->eleven .  $request->twelv . ' ' .  $request->therten .  $request->fourten .
-            $request->fiften .  $request->sixten . ' ' .  $request->seventen .  $request->eaghten .  $request->ninten .  $request->twenty . ' ' .  $request->twentyone .  $request->twentytwo .
-            $request->twentythree .  $request->twentyfour;
+        $answerNine =   $request->one .  $request->two .  $request->three . $request->four . $request->five . ' ' . $request->six .
+            $request->seven .  $request->eaght .   $request->nine .  $request->ten;
 
         $ChallengeNine = Challenge::where('id', 9)->first();
         $attemp = Attemp::where(['user_id' => auth()->user()->id, 'challenge_id' => $ChallengeNine->id])->get();
@@ -1406,7 +1433,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 6) {
@@ -1419,7 +1446,7 @@ class HomeController extends Controller
                     'time' => $timeClose,
                 ]);
                 $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-                Alert::info('لقج انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
+                Alert::info('لقد انتهت محاولاتك الثلاثة ', 'يجب عليك الأنتظار 90 ثانية ');
 
                 return view('home')->with('user', $user_notification);
             } else  if ($attemp->count() + 1  == 9) {
