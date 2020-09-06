@@ -507,8 +507,10 @@
 <script type="text/javascript">
   function spinner() {
       document.getElementsByClassName("loader")[0].style.display = "block";
+ 
   }
-  
+
+ 
 </script>    
 
 </body>

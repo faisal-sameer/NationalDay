@@ -67,7 +67,8 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-9 offset-md-4">
                                 <button id="btnlog" type="submit" class="btn btn-primary" onclick="spinner()">
-                                    {{ __('Register') }}
+                                    {{ __('Register') }} 
+
                                 </button>
                                 <div class="loader">
                                     <div class="loading">
