@@ -6,6 +6,8 @@
 <head>
 	<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>Random Name Picker</title>
 
   <link rel="stylesheet" href="css/normalize.css" />
@@ -33,8 +35,9 @@
 		<ul class="button-group even-4">
       <li><a href="index.html" class="alert button" id="reset">Reset</a></li>
 			<li><button class="button" id="list" onclick="namelist();">Name List</button></li>
-			<li><button class="button" id="save" onclick="save();">Save &amp; Update</button></li>
-			<li><button class="success button" id="go" onclick="go();">GO!</button></li>
+      <li><button class="button" id="save" onclick="save();">Save &amp; Update</button></li>
+   
+      <li><button class="success button" id="go" onclick="go();">GO!</button></li>
     </ul>
 		</div>
 	</div>
@@ -52,6 +55,8 @@
       
       <div id="values"></div>
 
+      <input type="text" id="winner"/>
+      <h3 style="text-align:center;margin-top:30px;" id="headline">Let's see who is The Lucky One?</h3>
 
 		</div>
 	</div>
@@ -277,13 +282,14 @@ function go(){
 function standout(text){
 
         $('#result1').removeClass('name');
+
         $('.name').animate({opacity: .25});
         $('#result1').animate({height: '+=60px'});
-        $('#result1').append('<div class="extra"><a class="small alert button" href="#" onClick="removevictim();">Remove name from list</a></div>');
+        $('#result1').append('<div class="extra"><a class="small alert button" href="#" onClick="removevictim();"> 'text'Remove name from list</a></div>');
         $('#go').removeAttr('disabled','disabled');
         $('#list').removeAttr('disabled','disabled');
         $('#save').removeAttr('disabled','disabled');
-        $('#headline').text('Found the Winner!');
+        $('#headline').text('لدينا فائز!');
         $('#headline').slideDown();
 }
 
@@ -291,9 +297,12 @@ function removevictim(){
 	// Removing victim from array and UI
 	// names = names.filter(function(){ return true});
 	// Rewriting namesbox contents
+  $('#headline').text('لدينا فائز!');
+
 	var nameupdated = "";
 	for(var i in names){
 		name = names[i];
+   
                 if (name == "" || name == text || typeof(name) == undefined){}else{
 			nameupdated = nameupdated + "\n" + name;
 		}

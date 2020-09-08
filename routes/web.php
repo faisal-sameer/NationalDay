@@ -27,6 +27,8 @@ Route::post('/challenge1', 'HomeController@challenge1answer')->name('answerOne')
 Route::get('/challenge2', 'HomeController@challenge2');
 Route::post('/challenge2', 'HomeController@challenge2answer')->name('answerTwo');
 Route::get('/challenge3', 'HomeController@challenge3');
+Route::post('/challenge3', 'HomeController@challenge3answer')->name('answerThree');
+
 Route::get('/challenge4', 'HomeController@challenge4');
 Route::post('/challenge4', 'HomeController@challenge4answer')->name('answerFour');
 
@@ -46,6 +48,7 @@ Route::get('/challenge9', 'HomeController@challenge9');
 Route::post('/challenge9', 'HomeController@challenge9answer')->name('answeNine');
 
 Route::get('/challenge10', 'HomeController@challenge10');
+Route::post('/challenge10', 'HomeController@challenge10answer')->name('answerTen');
 
 
 

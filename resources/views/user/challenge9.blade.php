@@ -16,28 +16,34 @@
 
                     
                         <div class="row">
-                                <div id="group1"  class="col-md-4">
-                                    <input   type="text"  name="one" placeholder="1" required maxlength="1" size="1">
-                                    <input   type="text"  name="two" placeholder="2" required maxlength="1" size="1">
-                                    <input type="text" name="three" placeholder="3" required maxlength="1"size="1">
-                                      <input  type="text"  name="four" placeholder="4" required maxlength="1" size="1">
-                                      <input  type="text"  name="five" placeholder="5" required maxlength="1" size="1">
+                                <div id="group9"  class="col-md-4">
+                                    <input  id="ch9"  type="text"  name="one"   maxlength="1" size="1">
+                                    <input  id="ch9" type="text"  name="two"   maxlength="1" size="1">
+                                    <input id="ch9" type="text" name="three"   maxlength="1"size="1">
+                                      <input id="ch9" type="text"  name="four"   maxlength="1" size="1">
+                                      <input id="ch9"  type="text"  name="five"   maxlength="1" size="1">
                                     </div>
 
                                     <div id="group1"   class="col-md-4">
-                                        <input  type="text"  name="six" placeholder="6" required maxlength="1"  size="1">
-                                        <input   type="text" name="seven" placeholder="7" required maxlength="1" size="1">
-                                        <input   type="text" name="eaght" placeholder="8" required maxlength="1" size="1">
-                                        <input  type="text"  name="nine" placeholder="9" required maxlength="1"size="1">
-                                        <input  type="text"  name="ten" placeholder="10" required maxlength="1" size="1">
+                                        <input id="ch9" type="text"  name="six"   maxlength="1"  size="1">
+                                        <input id="ch9"  type="text" name="seven"   maxlength="1" size="1">
+                                        <input  id="ch9" type="text" name="eaght"   maxlength="1" size="1">
+                                        <input id="ch9" type="text"  name="nine"   maxlength="1"size="1">
+                                        <input id="ch9" type="text"  name="ten"  maxlength="1" size="1">
                                         </div>
 
                                         
                         </div>    
                         <div class="form-group form-group-lg" >
-                            <button id="send2"  type="submit" class="btn btn-success btn-lg " >
+                            <button id="send2"  type="submit" class="btn btn-success btn-lg " onclick="spinner()">
                                 إرسال
                             </button>
+                            <div class="loader">
+                              <div class="loading">
+                              </div>
+                            </div>
+                          </div>
+
                         </form>
                     </div>
                  
@@ -56,16 +62,25 @@
                         </div>
                         <div class="modal-body">
                       
-                            <div class="form-group">
-                              <label class="col-form-label" id="lab">{{$challengeinfo}}:عدد المشاركين</label>
+
+                          <div class="form-group" id="lab">
+                            <img src="/img/team.png" id="model" >
+                            <br>
+                            <label class="col-form-label" id="lab">{{$challengeinfo}}</label>
 
                               
                           </div>
-                            <div class="form-group">
-                              <label  class="col-form-label" id="lab">{{$challengeAnswer}}:عدد الإجابات الصحيحة </label>
+                          <hr>
+                          <div class="form-group" id="lab">
+                            <img src="/img/correct.png" id="model" >
+                            <br>
+                          <label  class="col-form-label" id="lab">{{$challengeAnswer}}</label>
                              </div>
-                             <div class="form-group">
-                                <label >الإجابة سوف تكون بالأحرف العربية من اليمين الى اليسار </label>
+                             <hr>
+                             <div class="form-group" id="lab">
+                              <img src="/img/description.png" id="model" >
+                              <br>
+                            <label >الإجابة سوف تكون بالأحرف العربية من اليمين الى اليسار </label>
                             </div>
                                
 

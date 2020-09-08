@@ -18,20 +18,24 @@
                         <div class="form-inline" id="one">
 
 
-                     <input id="ch2"  type="text" class="form-control" name="one"  required maxlength="1" size="1">
-                     <input id="ch2"  type="text" class="form-control" name="two"  required maxlength="1" size="1">
-                     <input id="ch2" type="text" class="form-control" name="three"  required maxlength="1"size="1">
-                     <input id="ch2" type="text" class="form-control" name="four"  required maxlength="1" size="1">
-                     <input id="ch2" type="text" class="form-control" name="five"  required maxlength="1" size="1">
+                     <input id="ch2"  type="text" class="form-control" name="one"   maxlength="1" size="1">
+                     <input id="ch2"  type="text" class="form-control" name="two"   maxlength="1" size="1">
+                     <input id="ch2" type="text" class="form-control" name="three"   maxlength="1"size="1">
+                     <input id="ch2" type="text" class="form-control" name="four"   maxlength="1" size="1">
+                     <input id="ch2" type="text" class="form-control" name="five"   maxlength="1" size="1">
                     
                                       
                         </div>    
                    
                     </div>
                     <div class="form-group form-group-lg" >
-                        <button id="send2"  type="submit" class="btn btn-success btn-lg " >
+                        <button id="send2"  type="submit" class="btn btn-success btn-lg " onclick="spinner()">
                             إرسال
                         </button>
+                        <div class="loader">
+                          <div class="loading">
+                          </div>
+                        </div>
                     </div>
                 </form>
 
@@ -47,16 +51,23 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                      
-                            <div class="form-group">
-                              <label class="col-form-label" id="lab">{{$challengeinfo}}:عدد المشاركين</label>
+                          <div class="form-group" id="lab">
+                            <img src="/img/team.png" id="model" >
+                            <br>
+                              <label class="col-form-label" id="lab">{{$challengeinfo}} </label>
 
                               
                           </div>
-                            <div class="form-group">
-                              <label  class="col-form-label" id="lab">{{$challengeAnswer}}:عدد الإجابات الصحيحة </label>
+                          <hr>
+                          <div class="form-group" id="lab">
+                            <img src="/img/correct.png" id="model" >
+                            <br>
+                              <label  class="col-form-label" id="lab">{{$challengeAnswer}}</label>
                              </div>
-                             <div class="form-group">
+                             <hr>
+                             <div class="form-group" id="lab">
+                              <img src="/img/description.png" id="model" >
+                              <br>
                                 <label >الإجابة سوف تكون بالأرقام الانجليزية من اليسار لليمين </label>
                                </div>
                                

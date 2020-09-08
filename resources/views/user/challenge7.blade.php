@@ -18,21 +18,25 @@
                     <div class="form-group row">
                         <div class="form-inline" id="one">
 
-                            <input id="ch2"  type="text" class="form-control" name="one" placeholder="1" required maxlength="1" size="1">
-                            <input id="ch2"  type="text" class="form-control" name="two" placeholder="2" required maxlength="1" size="1">
-                            <input id="ch2" type="text" class="form-control" name="three" placeholder="3" required maxlength="1"size="1">
-                            <input id="ch2" type="text" class="form-control" name="four" placeholder="4" required maxlength="1" size="1">
-                            <input id="ch2" type="text" class="form-control" name="five" placeholder="3" required maxlength="1" size="1">
-                            <input id="ch2" type="text" class="form-control" name="six" placeholder="4" required maxlength="1"  size="1">
+                            <input id="ch2"  type="text" class="form-control" name="one"   maxlength="1" size="1">
+                            <input id="ch2"  type="text" class="form-control" name="two"   maxlength="1" size="1">
+                            <input id="ch2" type="text" class="form-control" name="three"   maxlength="1"size="1">
+                            <input id="ch2" type="text" class="form-control" name="four"   maxlength="1" size="1">
+                            <input id="ch2" type="text" class="form-control" name="five"   maxlength="1" size="1">
+                            <input id="ch2" type="text" class="form-control" name="six"   maxlength="1"  size="1">
                        
                                       
                         </div>    
                    
                     </div>
                     <div class="form-group form-group-lg" >
-                        <button id="send2"  type="submit" class="btn btn-success btn-lg " >
+                        <button id="send2"  type="submit" class="btn btn-success btn-lg " onclick="spinner()" >
                             إرسال
                         </button>
+                        <div class="loader">
+                            <div class="loading">
+                            </div>
+                          </div>
                     </div>
                     </form>
                      
@@ -49,15 +53,21 @@
                         </div>
                         <div class="modal-body">
                       
-                            <div class="form-group">
-                              <label class="col-form-label" id="lab">{{$challengeinfo}}:عدد المشاركين</label>
-
-                              
-                          </div>
-                            <div class="form-group">
-                              <label  class="col-form-label" id="lab">{{$challengeAnswer}}:عدد الإجابات الصحيحة </label>
+                          <div class="form-group" id="lab">
+                            <img src="/img/team.png" id="model" >
+                            <br>
+                            <label class="col-form-label" id="lab">{{$challengeinfo}}</label>
+                              </div>
+                              <hr>
+                              <div class="form-group" id="lab">
+                                <img src="/img/correct.png" id="model" >
+                                <br>
+                              <label  class="col-form-label" id="lab">{{$challengeAnswer}}</label>
                              </div>
-                             <div class="form-group">
+                             <hr>
+                             <div class="form-group" id="lab">
+                              <img src="/img/description.png" id="model" >
+                              <br>
                                 <label >الإجابة سوف تكون بالأحرف العربية من اليمين الى اليسار </label>
                             </div>
                                

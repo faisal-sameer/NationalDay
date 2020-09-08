@@ -16,6 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Styles 
 
@@ -24,8 +25,10 @@
   --> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
-	
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+    <script src="//geodata.solutions/includes/statecity.js"></script>
     <script type="text/javascript">
+
     /*
     (C) www.dhtmlgoodies.com, September 2005
     
@@ -317,7 +320,6 @@
     
     </script>
   
-
 </head>
 <body  data-spy="scroll" data-target=".navbar" data-offset="60" >
     @include('sweetalert::alert')
@@ -329,7 +331,7 @@
               <div class="navbar-brand"  >
             <a href="{{ url('/king') }}">           <img src="/img/ksa.png"  id="imgna" >
             </a>
-            <a  href="https://twitter.com/uqu_edu">       
+            <a  href="https://uqu.edu.sa/">       
                 <img src="/img/uqu.png"  id="uqu" >
           </a>
             <a  href="https://twitter.com/dsauqu?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">       
@@ -379,13 +381,17 @@
 
                               <a class="nav-link" href="{{ url('/king') }}">تاريخ المملكة </a>  
                           </li>
+                          <li class="nav-item">
+
+                            <a class="nav-link" href="{{ url('/home') }}">الفائزون</a>  
+                        </li>
                         @else
                             <div class="form-inline" id="dr">
                               
                             <li class="nav-item dropdown" >                           
                              
                                     <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        @if ($user == null)
+                                        @if ($user != null)
 
                                         <span class="dot2"><i class="far fa-bell"  id="bell"> </span></i>    التحديات
                                         @else 
@@ -393,7 +399,7 @@
 
                                         @endif
                                 </a>
-
+                             
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                  <a  class="nav-link" href="{{ url('challenge1') }}">التحدي الأول</a>  
@@ -438,8 +444,13 @@
                                        تفعيل الحساب <span class="dot"></span>  </a>
 
                                     @endif
+                                    @if (Auth::user()->user_permations == 1)
+
+                                      <a class="dropdown-item" href="{{ url('/Controller') }}">لوحة التحكم</a>  
+                                    @endif
                                     <a class="dropdown-item" href="{{ url('/') }}">عن المسابقة</a>  
                                     <a class="dropdown-item" href="{{ url('/king') }}">تاريخ المملكة </a>  
+                                    <a class="dropdown-item" href="{{ url('/home') }}">الفائزون</a>  
 
                                       <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -514,6 +525,10 @@
 </script>    
 
 </body>
-
+<script type="text/javascript">
+  $(window).on('load',function(){
+      $('#exampleModal').modal('show');
+  });
+</script>
 </html>
 

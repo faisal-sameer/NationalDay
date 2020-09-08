@@ -18,51 +18,51 @@
                         <div class="row">
                                 <div id="group1"  class="col-md-2">
                                     
-                            <input   type="text"  name="one"  required maxlength="1" size="2">
-                            <input   type="text"  name="two"  required maxlength="1" size="2">
+                            <input   type="text"  name="one"   maxlength="1" size="2">
+                            <input   type="text"  name="two"   maxlength="1" size="2">
                             </div>
 
                             <div id="group1"   class="col-md-3">
-                              <input type="text" name="three"  required maxlength="1"size="1">
-                            <input  type="text"  name="four"  required maxlength="1" size="1">
-                            <input  type="text"  name="five"  required maxlength="1" size="1">
+                              <input type="text" name="three"   maxlength="1"size="1">
+                            <input  type="text"  name="four"   maxlength="1" size="1">
+                            <input  type="text"  name="five"   maxlength="1" size="1">
                               </div>
 
                               <div id="group1" class="col-md-3">
 
-                            <input  type="text"  name="six"  required maxlength="1"  size="1">
-                            <input   type="text" name="seven"  required maxlength="1" size="1">
-                            <input   type="text" name="eaght"  required maxlength="1" size="1">
+                            <input  type="text"  name="six"   maxlength="1"  size="1">
+                            <input   type="text" name="seven"   maxlength="1" size="1">
+                            <input   type="text" name="eaght"   maxlength="1" size="1">
                         </div>
                         <div id="group1" class="col-sm-4">
-                              <input  type="text"  name="nine"  required maxlength="1"size="1">
-                            <input  type="text"  name="ten" required maxlength="1" size="1">
-                            <input  type="text"  name="eleven"  required maxlength="1" size="1">
-                            <input  type="text"  name="twelv"  required maxlength="1"  size="1">
+                              <input  type="text"  name="nine"   maxlength="1"size="1">
+                            <input  type="text"  name="ten"  maxlength="1" size="1">
+                            <input  type="text"  name="eleven"   maxlength="1" size="1">
+                            <input  type="text"  name="twelv"   maxlength="1"  size="1">
                         </div>
                     </div>
                     <div class="row">
 
                         <div id="group1"  class="col-sm-4">
 
-                            <input   type="text" name="therten"  required maxlength="1" size="1">
-                            <input   type="text" name="fourten"  required maxlength="1" size="1">
-                            <input  type="text" name="fiften"  required maxlength="1"size="1">
-                            <input  type="text" name="sixten"  required maxlength="1" size="1">
+                            <input   type="text" name="therten"   maxlength="1" size="1">
+                            <input   type="text" name="fourten"   maxlength="1" size="1">
+                            <input  type="text" name="fiften"   maxlength="1"size="1">
+                            <input  type="text" name="sixten"   maxlength="1" size="1">
                         </div>
                         <div id="group1"  class="col-sm-4">
 
-                            <input  type="text" name="seventen"  required maxlength="1" size="1">
-                            <input  type="text" name="eaghten"  required maxlength="1"  size="1">
-                            <input   type="text" name="ninten"  required maxlength="1" size="1">
-                            <input   type="text" name="twenty"  required maxlength="1" size="1">
+                            <input  type="text" name="seventen"   maxlength="1" size="1">
+                            <input  type="text" name="eaghten"   maxlength="1"  size="1">
+                            <input   type="text" name="ninten"   maxlength="1" size="1">
+                            <input   type="text" name="twenty"   maxlength="1" size="1">
                         </div>
                         <div id="group1"  class="col-sm-4">
 
-                            <input  type="text"  name="twentyone"  required maxlength="1"size="1">
-                            <input  type="text"  name="twentytwo"  required maxlength="1" size="1">
-                            <input  type="text"  name="twentythree"  required maxlength="1" size="1">
-                            <input  type="text"  name="twentyfour"  required maxlength="1"  size="1">
+                            <input  type="text"  name="twentyone"   maxlength="1"size="1">
+                            <input  type="text"  name="twentytwo"   maxlength="1" size="1">
+                            <input  type="text"  name="twentythree"   maxlength="1" size="1">
+                            <input  type="text"  name="twentyfour"   maxlength="1"  size="1">
                         </div>
 
                                  
@@ -71,9 +71,13 @@
 
                         </div> 
                         <div class="form-group form-group-lg" >
-                            <button id="send2"  type="submit" class="btn btn-success btn-lg " >
+                            <button id="send2"  type="submit" class="btn btn-success btn-lg "  onclick="spinner()">
                                 إرسال
                             </button>
+                            <div class="loader">
+                              <div class="loading">
+                              </div>
+                            </div>
                         </div>
                            
                     </form>
@@ -91,15 +95,25 @@
                             </div>
                             <div class="modal-body">
                           
-                                <div class="form-group">
-                                  <label class="col-form-label">عدد المشاركين:{{$challengeinfo}} </label>
+                             
+                                  
+                            <div class="form-group" id="lab">
+                              <img src="/img/team.png" id="model" >
+                              <br>
+                                  <label class="col-form-label">{{$challengeinfo}} </label>
 
                                   
                               </div>
-                                <div class="form-group">
-                                  <label  class="col-form-label">عدد الإجابات الصحيحة :{{$challengeAnswer}} </label>
+                              <hr>
+                              <div class="form-group" id="lab">
+                                <img src="/img/correct.png" id="model" >
+                                <br>
+                                  <label  class="col-form-label">{{$challengeAnswer}} </label>
                                  </div>
-                                 <div class="form-group">
+                                 <hr>
+                                 <div class="form-group" id="lab">
+                                  <img src="/img/description.png" id="model" >
+                                  <br>
                                     <label >الإجابة سوف تكون بالأحرف العربية من اليمين الى اليسار </label>
                                    </div>
                                    

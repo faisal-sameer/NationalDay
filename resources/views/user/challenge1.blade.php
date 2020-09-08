@@ -17,18 +17,22 @@
                         
 
                         <div class="form-inline" id="one">
-                            <input id="ch1"  type="text" class="form-control" name="one"  required maxlength="1" size="1">
-                            <input id="ch1"  type="text" class="form-control" name="two"  required maxlength="1" size="1">
-                            <input id="ch1" type="text" class="form-control" name="three"  required maxlength="1" size="1">
-                            <input id="ch1" type="text" class="form-control" name="four"  required maxlength="1" size="1">
+                            <input id="ch1"  type="text" class="form-control" name="one"  maxlength="1" size="1">
+                            <input id="ch1"  type="text" class="form-control" name="two"  maxlength="1" size="1">
+                            <input id="ch1" type="text" class="form-control" name="three"  maxlength="1" size="1">
+                            <input id="ch1" type="text" class="form-control" name="four"  maxlength="1" size="1">
                             
                         </div>    
                    
                     </div>
                     <div class="form-group form-group-lg" >
-                        <button id="send"  type="submit" class="btn btn-success btn-lg " >
+                        <button id="send"  type="submit" class="btn btn-success btn-lg " onclick="spinner()">
                             إرسال
                         </button>
+                        <div class="loader">
+                          <div class="loading">
+                          </div>
+                        </div>
                     </div>
                     </form>
                 </div>
@@ -37,22 +41,31 @@
                       <div class="modal-content center">
                         <div class="modal-header">
                           <br>
-                          <h3 class="modal-title" id="exampleModalLabel" >معلومات عن التحدي الأول</h3>
+                          <h3 class="modal-title" id="exampleModalLabel"  >معلومات عن التحدي الأول</h3>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
                       
-                            <div class="form-group">
-                              <label class="col-form-label" id="lab">{{$challengeinfo}}:عدد المشاركين</label>
+                            <div class="form-group" id="lab">
+                              <img src="/img/team.png" id="model" >
+                              <br>
+                              <label class="col-form-label" >{{$challengeinfo}}</label>
 
                               
                           </div>
-                            <div class="form-group">
-                              <label  class="col-form-label" id="lab">{{$challengeAnswer}}:عدد الإجابات الصحيحة </label>
+                          <hr>
+                            <div class="form-group" id="lab">
+                              <img src="/img/correct.png" id="model" >
+                              <br>
+
+                              <label  class="col-form-label" >{{$challengeAnswer}}</label>
                              </div>
-                             <div class="form-group">
+                             <hr>
+                             <div class="form-group" id="lab">
+                               <img src="/img/description.png" id="model" >
+                               <br>
                               <label >الإجابة سوف تكون بالأرقام الانجليزية من اليسار لليمين </label>
                             </div>
                                

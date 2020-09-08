@@ -39,7 +39,7 @@
           <div class="navbar-brand"  >
         <a href="{{ url('/king') }}">           <img src="/img/ksa.png"  id="imgna" >
         </a>
-        <a  href="https://twitter.com/uqu_edu">       
+        <a  href="https://uqu.edu.sa/">       
             <img src="/img/uqu.png"  id="uqu" >
       </a>
         <a  href="https://twitter.com/dsauqu?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">       
@@ -85,6 +85,10 @@
 
                             <a class="nav-link" href="{{ url('/') }}">عن المسابقة </a>  
                         </li>
+                        <li class="nav-item">
+
+                          <a class="nav-link" href="{{ url('/home') }}">الفائزون</a>  
+                      </li>
                     @else
                         <div class="form-inline" id="dr">
                           
@@ -145,6 +149,7 @@
 
                                 @endif
                                 <a class="dropdown-item" href="{{ url('/') }}">عن المسابقة</a>  
+                                <a class="dropdown-item" href="{{ url('/home') }}">الفائزون</a>  
 
                                   <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -251,9 +256,9 @@
             class="cd-h-timeline__event cd-h-timeline__event--selected text-component"
           >
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title">الملك عبد العزيز بن عبد الرحمن بن فيصل آل سعود-رحمه الله  </h2>
-              <em class="cd-h-timeline__event-date">الولادة : ذو الحجة 1292 هـ/يناير 1876م</em>
-              <em class="cd-h-timeline__event-date">الوفاة :الثاني من ربيع الأول 1373هـ الموافق التاسع من نوفمبر 1953 </em>
+              <h4 id="kingh4">الملك عبد العزيز بن عبد الرحمن بن فيصل آل سعود-رحمه الله  </h4>
+              <p id="kingp">الولادة : ذو الحجة 1292 هـ/يناير 1876م</p>
+              <p id="kingp">الوفاة :الثاني من ربيع الأول 1373هـ الموافق التاسع من نوفمبر 1953 </p>
 
               <img src="/img/king-az.jpeg" id="king" >
             </div>
@@ -261,10 +266,10 @@
 
           <li class="cd-h-timeline__event text-component">
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title">الملك سعود بن عبد العزيز آل سعود -رحمه الله  </h2>
-              <em class="cd-h-timeline__event-date">الولادة :           3 شوال 1319هـ/15 يناير 1902
-              </em>
-              <em class="cd-h-timeline__event-date">الوفاة :توفي في 6 ذي الحجة 1388هـ الموافق 1969م  </em>
+              <h4 id="kingh4">الملك سعود بن عبد العزيز آل سعود -رحمه الله  </h4>
+              <p id="kingp">الولادة :           3 شوال 1319هـ/15 يناير 1902
+              </p>
+              <p id="kingp">الوفاة :توفي في 6 ذي الحجة 1388هـ الموافق 1969م  </p>
 
               <img src="/img/king-so.jpeg" id="king" >
             </div>
@@ -272,9 +277,9 @@
 
           <li class="cd-h-timeline__event text-component">
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title">الملك فيصل بن عبد العزيز آل سعود -رحمه الله  </h2>
-              <em class="cd-h-timeline__event-date">الولادة :           14 صفر 1324 هـ / 9 أبريل 1906 م              </em>
-              <em class="cd-h-timeline__event-date">الوفاة : يوم الثلاثاء 12 ربيع الأول 1395 هـ الموافق 25 مارس 1975   </em>
+              <h4 id="kingh4">الملك فيصل بن عبد العزيز آل سعود -رحمه الله  </h4>
+              <p id="kingp">الولادة :           14 صفر 1324 هـ / 9 أبريل 1906 م              </p>
+              <p id="kingp">الوفاة : يوم الثلاثاء 12 ربيع الأول 1395 هـ الموافق 25 مارس 1975   </p>
 
               <img src="/img/king-fs.jpeg" id="king" >
             </div>
@@ -282,9 +287,9 @@
 
           <li class="cd-h-timeline__event text-component">
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title">الملك خالد بن عبد العزيز آل سعود -رحمه الله  </h2>
-              <em class="cd-h-timeline__event-date">الولادة :          6 ربيع الأول 1331 هـ / 13 فبراير 1913               </em>
-              <em class="cd-h-timeline__event-date">الوفاة : 21 شعبان 1402 هـ الموافق 13 يونيو 1982 م   </em>
+              <h4 id="kingh4">الملك خالد بن عبد العزيز آل سعود -رحمه الله  </h4>
+              <p id="kingp">الولادة :          6 ربيع الأول 1331 هـ / 13 فبراير 1913               </p>
+              <p id="kingp">الوفاة : 21 شعبان 1402 هـ الموافق 13 يونيو 1982 م   </p>
 
               <img src="/img/king-kh.jpeg" id="king" >
             </div>
@@ -292,9 +297,9 @@
 
           <li class="cd-h-timeline__event text-component">
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title">الملك فهد بن عبد العزيز آل سعود -رحمه الله  </h2>
-              <em class="cd-h-timeline__event-date">الولادة :         11رجب 1339 الموافق / 16 مارس 1921                </em>
-              <em class="cd-h-timeline__event-date">الوفاة :1 أغسطس 2005 الموافق 26 جمادى الثانية 1426هـ     </em>
+              <h4 id="kingh4">الملك فهد بن عبد العزيز آل سعود -رحمه الله  </h2>
+                <p id="kingp">الولادة :         11رجب 1339 الموافق / 16 مارس 1921                </p>
+                <p id="kingp">الوفاة :1 أغسطس 2005 الموافق 26 جمادى الثانية 1426هـ    </p>
 
               <img src="/img/fh.jpeg" id="king" >
             </div>
@@ -302,9 +307,9 @@
 
           <li class="cd-h-timeline__event text-component">
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title">الملك عبد الله  بن عبد العزيز آل سعود -رحمه الله  </h2>
-              <em class="cd-h-timeline__event-date">الولادة :        1أغسطس 1924                </em>
-              <em class="cd-h-timeline__event-date">الوفاة :1 23 يناير 2015     </em>
+              <h4 id="kingh4">الملك عبد الله  بن عبد العزيز آل سعود -رحمه الله  </h4>
+              <p id="kingp">الولادة :        1أغسطس 1924                </p>
+              <p id="kingp">الوفاة :1 23 يناير 2015     </p>
 
               <img src="/img/ab.jpeg" id="king" >
             </div>
@@ -312,8 +317,8 @@
 
           <li class="cd-h-timeline__event text-component">
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title">الملك سلمان  بن عبد العزيز آل سعود -حفظه الله   </h2>
-              <em class="cd-h-timeline__event-date">الولادة :       5 شوال 1354 هـ / 31 ديسمبر 1935                 </em>
+              <h4 id="kingh4">الملك سلمان  بن عبد العزيز آل سعود -حفظه الله   </h4>
+              <p id="kingp">الولادة :       5 شوال 1354 هـ / 31 ديسمبر 1935                 </p>
 
               <img src="/img/king-sm.jpeg" id="king" >
             </div>
@@ -321,8 +326,8 @@
 
           <li class="cd-h-timeline__event text-component">
             <div class="cd-h-timeline__event-content container">
-              <h2 class="cd-h-timeline__event-title"> الأمير محمد بن سلمان  بن عبد العزيز آل سعود -حفظه الله   </h2>
-              <em class="cd-h-timeline__event-date">الولادة :      15 ذو الحجة 1405 الموافق 31 أغسطس 1985                 </em>
+              <h4 id="kingh4"> الأمير محمد بن سلمان  بن عبد العزيز آل سعود -حفظه الله   </h4>
+              <p id="kingp">الولادة :      15 ذو الحجة 1405 الموافق 31 أغسطس 1985                 </p>
               <img src="/img/mbs.jpeg" id="king" >
 
             </div>

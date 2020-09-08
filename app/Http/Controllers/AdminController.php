@@ -21,56 +21,62 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    protected function DailyRewardShow(){
+    protected function DailyRewardShow()
+    {
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-        $sites = User::all() ;
-        $arr = Array('user'=>$user_notification , 'names'=>$sites);
+        $sites = User::all();
+        $arr = array('user' => $user_notification, 'names' => $sites);
 
-        return view('reword' , $arr );
+        return view('reword', $arr);
     }
-    protected function DailyRewardHome(){
-        
-        $home =   Record::all()->where('from',1)->random(1);
+    protected function DailyRewardHome(Request $request)
+    {
+        return $request;
+        $home =   Record::all()->where('from', 1)->random(1);
 
-      //  return $home->id ;
+        //  return $home->id ;
 
-      $winHome = $home[0]->user->user_name . '  ' . 'الفائز من منسوبي الجامعة ام القرى ' ; 
+        $winHome = $home[0]->user->user_name . '  ' . 'الفائز من منسوبي الجامعة ام القرى ';
 
-      Alert::success('مبروك الفائزين بالسحب الاول ',$winHome);
+        Alert::success('مبروك الفائزين بالسحب الاول ', $winHome);
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-            //// need to know how to create a new line with sweet alert 
+        //// need to know how to create a new line with sweet alert 
         return back();
     }
-    protected function DailyRewardAway(){
-        
-        $away =  Record::all()->where('from',0)->random(1);
+    protected function DailyRewardAway()
+    {
 
-      //  return $home->id ;
+        $away =  Record::all()->where('from', 0)->random(1);
 
-      $winAway = $away[0]->user->user_name . '  ' . 'الفائز من خارج جامعة ام القرى  ' ; 
+        //  return $home->id ;
 
-      Alert::success('مبروك الفائزين بالسحب الاول ',$winAway);
+        $winAway = $away[0]->user->user_name . '  ' . 'الفائز من خارج جامعة ام القرى  ';
+
+        Alert::success('مبروك الفائزين بالسحب الاول ', $winAway);
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-            //// need to know how to create a new line with sweet alert 
+        //// need to know how to create a new line with sweet alert 
         return back();
     }
-    protected function ControllerShow(){
+    protected function ControllerShow()
+    {
         $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
         $challenge = Challenge::all();
 
-        $arr = Array('user'=>$user_notification , 'challenge'=>$challenge);
-        return view('admin.ourController' , $arr);
+        $arr = array('user' => $user_notification, 'challenge' => $challenge);
+        return view('admin.ourController', $arr);
     }
-    protected function ChallengeOpen(Request $request){
+    protected function ChallengeOpen(Request $request)
+    {
 
-        Challenge::where('id',$request->selected)
-        ->update(['status'=>1]);
-        return back ();
+        Challenge::where('id', $request->selected)
+            ->update(['status' => 1]);
+        return back();
     }
-    protected function ChallengeClose(Request $request){
-        
-        Challenge::where('id',$request->selected)
-        ->update(['status'=>2]);
-        return back ();
+    protected function ChallengeClose(Request $request)
+    {
+
+        Challenge::where('id', $request->selected)
+            ->update(['status' => 2]);
+        return back();
     }
 }

@@ -63,11 +63,28 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
                             </div>
                         </div>
+                        <input type="hidden" name="country" id="countryId" value="SA"/>
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('إختر الإمارة') }}</label>
+                            <div class="col-md-6">
 
+                        <select name="state"class="form-control states order-alpha" id="stateId">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('إختر المدينة') }}</label>
+                    <div class="col-md-6">
+                <select name="city" class="form-control cities order-alpha" id="cityId">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-9 offset-md-4">
                                 <button id="btnlog" type="submit" class="btn btn-primary" onclick="spinner()">
-                                    {{ __('Register') }} 
+                                    {{ __('سجل') }} 
 
                                 </button>
                                 <div class="loader">
