@@ -149,7 +149,7 @@
 
                                 @endif
                                 <a class="dropdown-item" href="{{ url('/') }}">عن المسابقة</a>  
-                                <a class="dropdown-item" href="{{ url('/home') }}">الفائزون</a>  
+                                <a class="dropdown-item" href="{{ url('/home') }}">الإحصائيات & الفائزون</a>  
 
                                   <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
