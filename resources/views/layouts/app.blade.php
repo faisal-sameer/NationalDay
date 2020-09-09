@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   --> 
+  
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
@@ -383,7 +384,7 @@
                           </li>
                           <li class="nav-item">
 
-                            <a class="nav-link" href="{{ url('/home') }}">الفائزون</a>  
+                            <a class="nav-link" href="{{ url('/home') }}">الإحصائيات & الفائزون</a>  
                         </li>
                         @else
                             <div class="form-inline" id="dr">
@@ -450,7 +451,7 @@
                                     @endif
                                     <a class="dropdown-item" href="{{ url('/') }}">عن المسابقة</a>  
                                     <a class="dropdown-item" href="{{ url('/king') }}">تاريخ المملكة </a>  
-                                    <a class="dropdown-item" href="{{ url('/home') }}">الفائزون</a>  
+                                    <a class="dropdown-item" href="{{ url('/home') }}">الإحصائيات & الفائزون</a>  
 
                                       <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -530,5 +531,6 @@
       $('#exampleModal').modal('show');
   });
 </script>
+
 </html>
 

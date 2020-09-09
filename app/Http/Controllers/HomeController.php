@@ -37,9 +37,61 @@ class HomeController extends Controller
         if (auth()->user() == null) {
             return view('home');
         } else {
+            $challengeinfo1 = Attemp::where('challenge_id', 1)->get();
+            $challengeAnswer1 = Attemp::where(['challenge_id' => 1, 'status' => 4])->get();
+            $countinfo1 = count($challengeinfo1);
+            $countAnswer1 = count($challengeAnswer1);
+            $challengeinfo2 = Attemp::where('challenge_id', 2)->get();
+            $challengeAnswer2 = Attemp::where(['challenge_id' => 2, 'status' => 4])->get();
+            $countinfo2 = count($challengeinfo2);
+            $countAnswer2 = count($challengeAnswer2);
+            $challengeinfo3 = Attemp::where('challenge_id', 3)->get();
+            $challengeAnswer3 = Attemp::where(['challenge_id' => 3, 'status' => 4])->get();
+            $countinfo3 = count($challengeinfo3);
+            $countAnswer3 = count($challengeAnswer3);
+            $challengeinfo4 = Attemp::where('challenge_id', 4)->get();
+            $challengeAnswer4 = Attemp::where(['challenge_id' => 4, 'status' => 4])->get();
+            $countinfo4 = count($challengeinfo4);
+            $countAnswer4 = count($challengeAnswer4);
+            $challengeinfo5 = Attemp::where('challenge_id', 5)->get();
+            $challengeAnswer5 = Attemp::where(['challenge_id' => 5, 'status' => 4])->get();
+            $countinfo5 = count($challengeinfo5);
+            $countAnswer5 = count($challengeAnswer5);
+            $challengeinfo6 = Attemp::where('challenge_id', 6)->get();
+            $challengeAnswer6 = Attemp::where(['challenge_id' => 6, 'status' => 4])->get();
+            $countinfo6 = count($challengeinfo6);
+            $countAnswer6 = count($challengeAnswer6);
+            $challengeinfo7 = Attemp::where('challenge_id', 7)->get();
+            $challengeAnswer7 = Attemp::where(['challenge_id' => 7, 'status' => 4])->get();
+            $countinfo7 = count($challengeinfo7);
+            $countAnswer7 = count($challengeAnswer7);
+            $challengeinfo8 = Attemp::where('challenge_id', 8)->get();
+            $challengeAnswer8 = Attemp::where(['challenge_id' => 8, 'status' => 4])->get();
+            $countinfo8 = count($challengeinfo8);
+            $countAnswer8 = count($challengeAnswer8);
+            $challengeinfo9 = Attemp::where('challenge_id', 9)->get();
+            $challengeAnswer9 = Attemp::where(['challenge_id' => 9, 'status' => 4])->get();
+            $countinfo9 = count($challengeinfo9);
+            $countAnswer9 = count($challengeAnswer9);
 
             $user_notification = Notification::where(['user_id' => auth()->user()->id, 'seen' => 0])->get();
-            return view('home')->with('user', $user_notification);
+            $arr = array(
+                'challengeinfo1' => $countinfo1, 'challengeAnswer1' =>  $countAnswer1,
+                'challengeinfo2' => $countinfo2, 'challengeAnswer2' =>  $countAnswer2,
+                'challengeinfo3' => $countinfo3, 'challengeAnswer3' =>  $countAnswer3,
+                'challengeinfo4' => $countinfo4, 'challengeAnswer4' =>  $countAnswer4,
+                'challengeinfo5' => $countinfo5, 'challengeAnswer5' =>  $countAnswer5,
+                'challengeinfo6' => $countinfo6, 'challengeAnswer6' =>  $countAnswer6,
+                'challengeinfo7' => $countinfo7, 'challengeAnswer7' =>  $countAnswer7,
+                'challengeinfo8' => $countinfo8, 'challengeAnswer8' =>  $countAnswer8,
+                'challengeinfo9' => $countinfo9, 'challengeAnswer9' =>  $countAnswer9,
+
+
+
+
+                'user' => $user_notification
+            );
+            return view('home', $arr);
         }
     }
 
