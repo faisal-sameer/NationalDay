@@ -10,6 +10,8 @@
                 </h2>
                
                 <div  id="cc">
+                  <input type="image" src="img/change.png" id="info" />
+
                     <form method="POST" action="{{ route('answerSix') }}">
                         @csrf
                     <img src="/img/5.png"  id="imgc1" >

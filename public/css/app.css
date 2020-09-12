@@ -11057,6 +11057,11 @@ a.text-dark:focus {
     margin-left: 12%;
     margin-top: 4%;
 }
+#send3 {
+    width: 70%;
+    margin-left: 12%;
+    margin-top: 4%;
+}
 #hh {
     margin-left: 38%;
     color: green;
@@ -11387,6 +11392,11 @@ a.text-dark:focus {
     text-align: center;
 }
 @media only screen and (max-width: 970px) {
+    #send3 {
+        width: 70%;
+        margin-left: 12%;
+        margin-top: 4%;
+    }
     #pie {
         width: 80%;
         margin-right: 80%;

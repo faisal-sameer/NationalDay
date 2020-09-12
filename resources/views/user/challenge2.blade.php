@@ -9,6 +9,8 @@
                 <h2 id="hh"> 
                  <img src="img/infoo.png" data-toggle="modal" data-target="#exampleModal" id="info">{{ __('التحدي الثاني') }}</h2>
                 <div  id="cc">
+                  <input type="image" src="img/change.png" id="info" />
+
                     <form method="POST" action="{{ route('answerTwo') }}">
                         @csrf
                     <img src="img/ra3_.png"  id="imgc1" >

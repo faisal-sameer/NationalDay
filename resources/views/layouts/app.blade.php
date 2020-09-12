@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> تحدي ام القرى لليوم الوطني </title>
+    <link rel="icon" href="/img/ksa.png" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

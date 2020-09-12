@@ -8,14 +8,16 @@
             <div >
                 <h2 id="hh">
                     <img src="img/infoo.png" data-toggle="modal" data-target="#exampleModal" id="info">{{ __('التحدي الرابع') }}</h2>
-                    <form method="POST" action="{{ route('answerFour') }}">
-                        @csrf
+                
                         <div class="cr">
+                          <input type="image" src="img/change.png" id="info" />
+
+                          <form method="POST" action="{{ route('answerFour') }}">
+                            @csrf
                             <img id="bg" src="img/bgpuzzle.jpg" >
                     <a id="textx" href="#" class="centered" onclick="scramble();return false">أبداء </a>
                    
                     
-                    </div>
                    
                     <div id="puzzle_container">
                 </div>
@@ -24,7 +26,7 @@
                     <div id="cc">
 
                         <div class="row">
-                            <div id="group1"  class="col-md-4">
+                            <div id="group1"  class="col-sm-4">
                                 <input   type="text"  name="one"   maxlength="1" size="1">
                                 <input   type="text"  name="two"   maxlength="1" size="1">
                                 <input type="text" name="three"   maxlength="1"size="1">
@@ -32,14 +34,14 @@
                                   <input  type="text"  name="five"   maxlength="1" size="1">
                                 </div>
 
-                                <div id="group1"   class="col-md-4">
+                                <div id="group1"   class="col-sm-4">
                                     <input  type="text"  name="six"   maxlength="1"  size="1">
                                     <input   type="text" name="seven"   maxlength="1" size="1">
                                     <input   type="text" name="eaght"   maxlength="1" size="1">
                                     <input  type="text"  name="nine"   maxlength="1"size="1">
                                     <input  type="text"  name="ten"   maxlength="1" size="1">
                                     </div>
-                                    <div id="group1"   class="col-md-3">
+                                    <div id="group1"   class="col-sm-3">
                                         <input  type="text"  name="eleven"   maxlength="1" size="1">
                                         <input  type="text"  name="twelv"   maxlength="1"  size="1">
                                         <input   type="text" name="therten"   maxlength="1" size="1">
@@ -59,7 +61,8 @@
                     </div>
                 </div>
                 </form>
-            </div>
+              </div>
+
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content center">
@@ -98,7 +101,8 @@
                 </div>
               </div>
           
-           
+            </div>
+
         </div>
     </div>
 </div>
